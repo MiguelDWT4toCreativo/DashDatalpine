@@ -1,0 +1,79 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recopila los datos del formulario
+    $nombreEmpresa = $_POST["nombre_empresa"];
+    $areaInforme = $_POST["area_informe"];
+    $interesPlataforma = $_POST["interes_plataforma"];
+    $informacionAdicional = $_POST["informacion_adicional"];
+    $recomendaciones = $_POST["recomendaciones"];
+    $clasificacionSegmento = $_POST["clasificacion_segmento"];
+
+    // Construye el cuerpo del correo electrónico
+    $mensaje = "Nombre de la Empresa: $nombreEmpresa\n";
+    $mensaje .= "Área que ocupa el informe: $areaInforme\n";
+    $mensaje .= "Interés en la plataforma: $interesPlataforma\n";
+    $mensaje .= "Información Adicional: $informacionAdicional\n";
+    $mensaje .= "Recomendaciones: $recomendaciones\n";
+    $mensaje .= "Clasificación de Segmento: $clasificacionSegmento\n";
+
+    // Configura el destinatario y asunto del correo electrónico
+    $destinatario = "aureliasancheze5@gmail.com";
+    $asunto = "Nuevo formulario enviado de Encuesta de Satisfaccion DatAlpine";
+
+    // Envía el correo electrónico
+    mail($destinatario, $asunto, $mensaje);
+
+    // Puedes redirigir al usuario a una página de confirmación
+    header("Location: /dashboard/inicio.php");
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+</head>
+<body>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <!-- Pregunta 1: Nombre de la Empresa -->
+        <label for="nombre_empresa">Nombre de la Empresa:</label>
+        <input type="text" name="nombre_empresa" required>
+
+        <!-- Pregunta 2: Área que ocupa el informe -->
+        <label for="area_informe">Área que ocupa el informe:</label>
+        <select name="area_informe" required>
+            <option value="Mercadotecnia">Mercadotecnia</option>
+            <option value="Comercial">Comercial</option>
+            <option value="Direccion_General">Direccion General</option>
+            <option value="Arquitectura">Arquitectura</option>
+            <option value="Otro">Otro</option>
+        </select>
+
+        <!-- Pregunta 3: Interés en la plataforma -->
+        <label>¿Qué graficas o información proporcionada dentro de nuestra plataforma fue de tu interés?</label>
+        <textarea name="interes_plataforma" required></textarea>
+
+        <!-- Pregunta 4: Información adicional a visualizar -->
+        <label>¿Qué información adicional te gustaría visualizar?</label>
+        <textarea name="informacion_adicional" required></textarea>
+
+        <!-- Pregunta 5: Recomendación de funcionalidades -->
+        <label>Recomendación de funcionalidades de nuestra plataforma</label>
+        <textarea name="recomendaciones" required></textarea>
+
+        <!-- Pregunta 6: Clasificación de segmento -->
+        <label>¿De qué clasificación de segmento deseas tu informe inmobiliario?</label>
+        <select name="clasificacion_segmento" required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="S">S</option>
+        </select>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>

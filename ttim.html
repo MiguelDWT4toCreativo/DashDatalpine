@@ -1,0 +1,1829 @@
+<?php
+// Inicia la sesión al principio del script
+session_start();
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== TRUE) {
+    header("location: index.php");
+    exit();
+}
+
+$role = trim($_SESSION['role']);
+$rolesPermitidos = array('usuario_hidalgo', 'usuario_total', 'usuario_puebla', '');
+
+if (!isset($role) || !in_array($role, $rolesPermitidos)) {
+    header("location: denegado.html");
+    exit();
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="es"
+      dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible"
+              content="IE=edge">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Investigacion de Mercado </title>
+        <link rel="stylesheet" href="pdcc.min.css">
+<script charset="utf-8" src="pdcc.min.js"></script>
+<script type="text/javascript">
+    
+PDCookieConsent.config({
+"defaultLang" : "es",
+"brand": {
+"dev" : false,
+"name": "PRUEBAS",
+"url" : "https://localhost",
+"websiteOwner" : "PRUEBAS"
+},
+"cookiePolicyLink": "http://localhost/cookies.php",
+"hideModalIn": ["http://localhost/cookies.php"],
+"styles": {
+"primaryButton": {
+"bgColor" : "#A1FFA1",
+"txtColor": "#036900"
+},
+"secondaryButton": {
+"bgColor" : "#EEEEEE",
+"txtColor": "#333333"
+}
+}
+});
+</script>
+
+
+
+        <!-- Prevent the demo from appearing in search engines -->
+        <meta name="robots"
+              content="noindex">
+
+        <!-- Perfect Scrollbar -->
+        <link type="text/css"
+              href="assets/vendor/perfect-scrollbar.css"
+              rel="stylesheet">
+
+        <!-- App CSS -->
+        <link type="text/css"
+              href="assets/css/app.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/app.rtl.css"
+              rel="stylesheet">
+
+        <!-- Material Design Icons -->
+        <link type="text/css"
+              href="assets/css/vendor-material-icons.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/vendor-material-icons.rtl.css"
+              rel="stylesheet">
+
+        <!-- Font Awesome FREE Icons -->
+        <link type="text/css"
+              href="assets/css/vendor-fontawesome-free.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/vendor-fontawesome-free.rtl.css"
+              rel="stylesheet">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async
+                src="https://www.googletagmanager.com/gtag/js?id=UA-133433427-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'UA-133433427-1');
+        </script>
+
+        <!-- Flatpickr -->
+        <link type="text/css"
+              href="assets/css/vendor-flatpickr.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/vendor-flatpickr.rtl.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/vendor-flatpickr-airbnb.css"
+              rel="stylesheet">
+        <link type="text/css"
+              href="assets/css/vendor-flatpickr-airbnb.rtl.css"
+              rel="stylesheet">
+
+        <!-- Vector Maps -->
+        <link type="text/css"
+              href="assets/vendor/jqvmap/jqvmap.min.css"
+              rel="stylesheet">
+        <script>
+      function mostrar(id)
+      {
+         var objeto=document.getElementById(id)
+            objeto.style.display="block";
+      }
+      function ocultar(id)
+      {
+         var objeto=document.getElementById(id)
+            objeto.style.display="none";
+      }
+   </script>
+   <style>
+      .oculto {display:none;}
+   </style>
+   <style>
+    table {
+        border-collapse: collapse;
+        width: 70%; /* Puedes ajustar el ancho según tus necesidades */
+        margin: 20px auto; /* Agregado para espaciado alrededor de la tabla */
+        text-align: center;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: justify;
+        padding: 8px;
+    }
+
+    /* Estilo para la primera columna */
+    td:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    /* Estilo para la segunda columna */
+    td:nth-child(even) {
+        background-color: #e6e6e6;
+    }
+</style>
+
+    </head>
+    
+
+    <style>
+        .tooltip-alpine {
+          position: relative;
+          display: inline-block;
+          
+        }
+        .tooltip-alpine .tooltiptext-alpine {
+          visibility: hidden;
+          width: 250px;
+          background-color: white;
+          color: black;
+          text-align: center;
+          border: 1px solid #D5DDE6;
+          border-radius: 6px;
+          padding: 5px 0;
+          /* Position the tooltip */
+          position: absolute;
+          z-index: 1;
+          top: 125%; /* Posiciona el tooltip bajo del elemento */
+          right: 0%;
+        }
+        .tooltip-alpine:hover .tooltiptext-alpine {
+          visibility: visible;
+        }
+
+
+        
+    </style>
+
+<style>
+    .porcentaje {
+        font-weight: bold;
+        color: green;
+        display: inline;
+    }
+</style>
+
+<style>
+    .cantidades {
+        font-weight: bold;
+        display: inline;
+    }
+</style>
+
+<style>
+    .column-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .column-container .text {
+        width: 48%;
+        box-sizing: border-box;
+    }
+</style>
+
+
+<style>
+    /* Estilos para el botón fijo */
+    .fixed-button {
+        position: absolute;
+        bottom: 60px; /* Puedes ajustar la posición según tus necesidades */
+        right: 30px; /* Puedes ajustar la posición según tus necesidades */
+        z-index: 1000; /* Ajusta la capa z-index según sea necesario */
+    }
+</style>
+<style>
+    .sidebar-menu-item:last-child {
+        margin-top: auto;
+        margin-bottom: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+
+
+    <body class="layout-default"
+        style="text-align: justify;">
+
+        <div class="preloader">
+        </div>
+
+        <!-- Header Layout -->
+        <div class="mdk-header-layout js-mdk-header-layout">
+
+            <!-- Header -->
+
+            <div id="header"
+                 class="mdk-header js-mdk-header m-0"
+                 data-fixed>
+                 <div class="mdk-header__content">
+                    <div class="navbar navbar-expand-sm navbar-main navbar-dark bg-white  pr-0"
+                         id="navbar"
+                         data-primary>
+                        <div class="container-fluid p-0">
+                            <!-- Navbar toggler -->
+                            <button class="navbar-toggler navbar-toggler-right d-block d-lg-none"
+                                    type="button"
+                                    data-toggle="sidebar"
+                                    style="background-color: darkblue;">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <!-- Navbar Brand -->
+                            
+                               <img width="230" height="45"src="Logo.png" />
+                           
+                            <form class="search-form d-none d-sm-flex flex"
+                                  action="inicio.php">
+                                <button class="btn"
+                                        type="submit"><i class="material-icons">search</i></button>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Buscar">
+                            </form>
+                            <ul class="nav navbar-nav ml-auto d-none d-md-flex">
+                                <li class="nav-item dropdown">
+                                    <a href="#notifications_menu"
+                                       class="nav-link dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       data-caret="false">
+                                        <i class="material-icons nav-icon navbar-notifications-indicator" style="color: darkgray;">notifications</i>
+                                    </a>
+                                    <div id="notifications_menu"
+                                         class="dropdown-menu dropdown-menu-right navbar-notifications-menu">
+                                        <div class="dropdown-item d-flex align-items-center py-2">
+                                            <span class="flex navbar-notifications-menu__title m-0">Notificaciones</span>
+                                            <a href="javascript:void(0)"
+                                               class="text-muted"><small>Borrar notificaciones</small></a>
+                                        </div>
+                                        <div class="navbar-notifications-menu__content"
+                                             data-perfect-scrollbar>
+                                            <div class="py-2">
+                                                <div class="dropdown-item d-flex">
+                                                    <div class="mr-3">
+                                                        <a href="#">
+                                                            <div class="avatar avatar-xs"
+                                                                 style="width: 32px; height: 32px;">
+                                                                <span class="avatar-title rounded-circle">B</span>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="flex">
+                                                        <a href="#">Brayan</a> <small class="text-muted">Escribio:</small><br>
+                                                        <div>Prueba de mensaje</div>
+                                                        <small class="text-muted">Hace 1 minuto</small>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <a href="javascript:void(0);"
+                                           class="dropdown-item text-center navbar-notifications-menu__footer">Ver todas las notificaciones</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav d-none d-sm-flex border-left navbar-height align-items-center">
+                                <li class="nav-item dropdown">
+                                    <a href="#account_menu"
+                                       class="nav-link dropdown-toggle"
+                                       data-toggle="dropdown"
+                                       data-caret="false">
+                                        
+                                        <div class="avatar avatar-xs"
+                                            style="width: 32px; height: 32px;">
+                                            <span class="avatar-title rounded-circle">AD</span>
+                                        </div>
+                                    </a>
+                                    <div id="account_menu"
+                                         class="dropdown-menu dropdown-menu-right">
+                                        <div class="dropdown-item-text dropdown-item-text--lh">
+                                            <div><strong>Administrador</strong></div>
+                                            <div class="text-muted">@admin</div>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item"
+                                           href="edit-account.php"><i class="material-icons">account_circle</i> Mi perfil</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="logout.php"><i class="material-icons">exit_to_app</i> Cerrar sesión</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- // END Header -->
+
+            <!-- Header Layout Content -->
+            <div class="mdk-header-layout__content">
+                <div class="mdk-drawer-layout js-mdk-drawer-layout"
+                     data-push
+                     data-responsive-width="992px">
+                    <div class="mdk-drawer-layout__content page">
+                        <div class="container-fluid page__heading-container">
+                            <div class="page__heading d-flex align-items-end">
+                                <div class="flex">
+                                    <div>
+                                        <a href="#" class="btn-link" style="color: #374D67;">Tlaxcala</a>
+                                        <span class="arrow">&gt;</span>
+                                        <a href="#" class="btn-link" style="color: #3D45C0;">Tlaxcala</a>
+                                    </div>
+                                    <h1 class="m-0">Investigación de Mercado</h1>
+                                    <div class="text py-2">En este informe, exploramos el proceso de investigación de mercado, que incluye la recopilación, el análisis y la <br> interpretación de datos, evaluar la competencia y encontrar oportunidades de crecimiento.</div>
+                                    <a href="#" class="pdcc-open-modal">Panel Cookies</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-fluid page__container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="card-header__title flex m-0 py-2">1. Demográfico </h4>
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                            <h4 class="card-header__title m-0"> 1.1. Distribución de la población por edad y género </h4>
+                                        </div>
+
+                                        <p style="text-align: center;">
+                                            <iframe width="705" height="362" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1794993926&amp;format=interactive"></iframe>                                        </p>
+                                        
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0">Interpretación: </h4>
+                                            <div class="text"> 
+                                                Distribución de la estructura demográfica de la población de Tlaxcala por grupos de edad y género, se tiene un registro de <strong>99,896 habitantes</strong> de los cuales los <strong>menores de 29 años</strong> representan <p class="porcentaje">67.0%</p>, personas de <strong>30 a 60</strong> años con <p class="porcentaje">52.1%</p>, y mayores de 64 años con <p class="porcentaje">22.8%  </p>                                          
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-dpeg">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                            <h4 class="card-header__title m-0"> 1.2 Distribución de la población por edad y género Tlaxcala</h4>
+                                        </div>
+
+                                        <p style="text-align: center;">
+                                            <iframe width="705" height="362" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1794993926&amp;format=interactive"></iframe>                                        
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0">Interpretación: </h4>
+                                            <body>
+                                                <div class="text">
+                                                    En la pirámide poblacional de Tlaxcala se tiene registro de <strong>1,322,052 habitantes</strong> de los cuales <strong>642,701</strong> pertenecen a la población ocupada, <p class="porcentaje">48.7%</p>  se encuentra en un empleo formal y <p class="porcentaje">51.3%</p> en informal. Y de la población de menores de <strong>29 años</strong> representan <p class="porcentaje">68.6%</p>, personas de <strong>30 a 60 años</strong> con <p class="porcentaje">46.7%</p>, y mayores de <strong>64 años</strong> con <p class="porcentaje">21.3%</p>.                                                </div>
+                                            </body>                                        
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-dpegp">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-white d-flex align-items-center">
+                                    <h4 class="card-header__title m-0">1.3 Distribución de créditos por grupos de edad</h4>
+                                </div>
+                                <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                    <form style="text-align: center;">
+                                        <div class="d-flex align-items-center">>
+                                            <iframe width="505" height="277" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQSYGWZw5iYJ2HlIsjswROVVanWxRIe98RLIDP9rK3D1ydWL12OCCWop9cjT1yUjA/pubchart?oid=1578396855&amp;format=interactive"></iframe>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                    <div class="">
+                                        <div class="text">
+                                        <p>La gráfica de pastel revela que en Tlaxcala el <p class="porcentaje">79.2%</p> de los titulares de créditos tienen entre <strong>30 y 59 años</strong>, destacando la actividad crediticia de este grupo. Asimismo, el <p class="porcentaje">15.9%</p> de personas menores de <strong>29 años</strong> muestra cierta inclusión financiera en este segmento más joven, mientras que el <p class="porcentaje">4.9%</p> de personas mayores de <strong>60 años</strong> con créditos sugiere su participación en actividades financieras.</p>
+  
+                                        </div>
+                                    </div>
+                                    <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                        <ul class="nav navbar-nav align-items-center">
+                                            <button type="button"
+                                                    class="mr-auto"
+                                                    style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                    data-toggle="modal"
+                                                    data-placement="bottom"
+                                                    data-target="#modal-large-dcge">
+                                                <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                            </button>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="card-header__title flex m-0 py-2">2.	Precio de oferta </h4>
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                            <h4 class="card-header__title flex m-0">2.1 Precio de oferta </h4>
+                                        </div>
+                                        <p style="text-align: center;">
+                                            <iframe width="856" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=732705810&amp;format=interactive"></iframe>                                        </p>
+                                        <div class="card-header bg-white d-flex align-items-center">                                             
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0">Interpretación: </h4> 
+                                            <div class="">
+                                                <div class="text">
+                                                    <p>Desde <strong>julio de 2023</strong> a <strong>febrero de 2024</strong>, hemos presenciado una disminución consistente en nuestros valores financieros, con un inicio fuerte en <strong>julio</strong> de <strong>$2,192,709.95</strong> y una disminución progresiva hasta <strong>$1,915,275.74</strong> en <strong>febrero de 2024</strong>. Esta tendencia refleja una reducción notable y constante en el período de análisis. Esta información es clave para comprender las dinámicas del mercado y ajustar nuestras estrategias de manera efectiva, asegurando que nos adaptamos a los cambios y maximizamos nuestro potencial en el mercado actual.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-po">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                            <h4 class="card-header__title flex m-0">2.2 Mediana del precio de oferta  </h4>
+                                        </div>
+                                        <p style="text-align: center;">
+                                            <iframe width="885" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=161484444&amp;format=interactive"></iframe>                                        </p>
+                                        <div class="card-header bg-white d-flex align-items-center">                                             
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0">Interpretación: </h4> 
+                                            <div class="text">
+                                                Analizando los datos financieros del período <strong>2023-2024</strong>, observamos una interesante dinámica en los valores. Iniciamos con una estabilidad en <strong>julio, agosto y septiembre</strong>, manteniendo un valor constante de <strong>$1,600,000.00</strong>. Sin embargo, a partir de <strong>octubre</strong>, se evidencia una disminución, llegando a <strong>$1,300,000.00 en diciembre</strong>. Curiosamente, esta tendencia se revierte en enero y <strong>febrero de 2024</strong>, donde los valores ascienden nuevamente a <strong>$1,450,000.00</strong>, mostrando signos de recuperación. Este patrón subraya la importancia de una vigilancia constante del mercado y la necesidad de adaptarse rápidamente a las fluctuaciones para optimizar resultados.
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-mpo">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">       
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                            <h4 class="card-header__title m-0"> 2.3 Porcentaje de vivienda ofertadas por antigüedad</h4>
+                                        </div>
+                                        <p style="text-align: center;">
+                                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQX6HV4iKEsF0uJ-dxHXixMFO_MfPxGthAhgbiLQ6shDr3WLOJSL5BAYESXBXj-Kg/pubchart?oid=2120659605&amp;format=interactive"></iframe>
+                                        </p>
+                                        <div class="card-header bg-white d-flex align-items-center"></div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0">Interpretación: </h4>
+                                            <div class="text"> 
+                                                <p>Al analizar la distribución de la antigüedad de las unidades, vemos que la mayoría, un <p class="porcentaje">84.92%</p>, tienen entre <strong>0 y 5 años</strong>, lo cual indica una prevalencia de unidades bastante nuevas en el mercado. Las unidades con una antigüedad de <strong>6 a 15 años</strong> representan solo un <p class="porcentaje">10.83%</p>, mientras que aquellas con <strong>16 a 25 años</strong> constituyen un <p class="porcentaje">3.66%</p>.</p>
+                                                <p>Estos datos sugieren un mercado inclinado hacia propiedades más modernas, posiblemente reflejando preferencias de los consumidores o un reciente desarrollo en el área</p>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-pvoa">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="card-header__title m-0">3. Segmentación de mercado</h4>
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                            <h4 class="card-header__title m-0"> 3.1	Distribución de propiedades por segmento</h4>
+                                            <div>
+                                                <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido1') & ocultar('contenido2')" value="2022-2024">
+                                            </div>
+                                        </div>
+                                        <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                            <form style="text-align: center;">  
+                                                <div class="d-flex align-items-center">
+                                                    <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1643032873&amp;format=interactive" id="contenido1"></iframe>                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                            <div class="text">
+                                                <p>La gráfica muestra la distribución de propiedades por segmento durante el periodo <strong>2023-2024</strong>. El segmento E constituye la mayoría con un <p class="porcentaje">31.5%</p>, seguido de cerca por el segmento D con un <p class="porcentaje">27.7%</p>.</p>
+                                                <p>Los <strong>segmentos C y B</strong> representan un <p class="porcentaje">18.3%</p> y <p class="porcentaje">9.5%</p>, respectivamente.</p>
+                                                <p>El <strong>segmento A</strong> comprende un <p class="porcentaje">4.5%</p>, mientras que los segmentos menos representativos son <strong>S</strong> con un <p class="porcentaje">7.4% </p>y <strong>L</strong> con solo un <p class="porcentaje">1.2%</p>. </p>
+                                                <p>Esta distribución sugiere que hay una preferencia o disponibilidad mayor en el mercado para las propiedades de los <strong>segmentos D y E</strong>, lo cual podría ser relevante para estrategias de inversión.</p>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-dps">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                            <h4 class="card-header__title m-0"> 3.2	Promedio de precio por segmento  </h4>
+                                        </div>
+                                        <p style="text-align: center;">
+                                            <iframe width="795" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=2136268946&amp;format=interactive"></iframe>                                        </p>
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                            <div class="text">
+                                                La gráfica presenta los precios promedio por segmento en el mercado de Tlaxcala. 
+                                                <p>Se observa que: </p>
+                                                <ul>
+                                                    <li>En el gráfico podemos observar que el segmento ELITE domina el mercado con un precio significativamente alto de <strong>$22,000,000.00</strong>. </li>
+                                                    <li>El siguiente en la escala es el segmento <strong>L</strong> con un precio de <strong>$16,466,666.67</strong>, seguido por el segmento <strong>S</strong> con <strong>$6,886,065.42</strong>. </li>
+                                                    <li>Los <strong>segmentos A y B</strong> tienen precios más moderados, con <strong>$3,622,777.31 y $2,842,624.65</strong> respectivamente. </li>
+                                                    <li>Los <strong>segmentos C, D y E</strong> presentan los precios más accesibles, con <strong>$2,108,106.03</strong> para <strong>C</strong>, seguido por una disminución notable a <strong>$1,363,812.48</strong> para <strong>D</strong> y <strong>$630,900.67</strong> para <strong>E</strong>. </li>
+                                                    <p>Este gráfico indica una marcada diferenciación en precios entre los segmentos de propiedades, lo que podría apuntar a una amplia gama de opciones para consumidores con distintos niveles de poder adquisitivo en el mercado inmobiliario de <strong>2024</strong>.</p>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-pps">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                            <h4 class="card-header__title m-0">3.3 Tendencias de precios por segmento</h4>
+                                        </div>            
+                                        <p style="text-align: center;">
+                                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1674667194&amp;format=interactive"></iframe>                                        </p>
+                                        <div class="card-header bg-white d-flex align-items-center"></div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                            <div class="text"> 
+                                                El gráfico muestra la variación trimestral porcentual para el año 2024.                                                 <br>
+                                                <p>Se observa un ligero aumento del <p class="porcentaje">0.42%</p> en el primer segmento, mientras que el segundo segmento permanece casi estable con una mínima subida del <p class="porcentaje">0.09%</p>. </p>
+                                                <p>El <strong>tercer segmento</strong> también muestra un pequeño crecimiento del <p class="porcentaje">0.24%</p>. En contraste, los dos últimos segmentos experimentan una disminución, con caídas de <p class="porcentaje">-1.56% y -1.70%</p> respectivamente. </p>
+                                                <p>Sin embargo, el cambio más significativo se ve en el último segmento, que presenta una reducción notable del <p class="porcentaje">-8.69%</p>. </p>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-tps">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="card-header__title m-0">4. Créditos</h4>       
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                            <h4 class="card-header__title m-0">4.1	Distribución de créditos por segmento</h4>
+                                            <div>
+                                                <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido3') & ocultar('contenido4')" value="2022">
+                                                <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido4') & ocultar('contenido3')" value="2023">
+                                            </div>
+                                        </div>
+                                        <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                            <form style="text-align: center;">  
+                                                <div class="d-flex align-items-center">       
+                                                    <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=379499144&amp;format=interactive" id="contenido3"></iframe>
+                                                    <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1794790116&amp;format=interactive" id="contenido4" class="oculto"></iframe>                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                            <div class="text"> 
+                                                <br>
+                                                <p>Comparando el <strong>2023</strong> con el año anterior, vemos cambios notables en los créditos inmobiliarios por segmento de precio.</p>
+                                                <p>El <strong>segmento E</strong>, aunque sigue siendo el preferido, reduce su cuota del <p class="porcentaje">82.94% al 57.48%</p>, evidenciando una disminución significativa en su demanda o en la oferta de créditos disponibles para este segmento.</p>
+                                                <p>Los <strong>segmentos C y B</strong> mantienen sus porcentajes de <p class="porcentaje">10.50% y 1.84%</p> respectivamente, indicando estabilidad en estos rangos.</p>
+                                                <p>El <strong>segmento A</strong> muestra una leve caída del <p class="porcentaje">1.57% al 1.05%</p>, y el segmento <strong>S</strong> ve una reducción más drástica del <p>2.89% al 0.26%</p>.</p>
+                                                <p>El <strong>segmento L</strong> desaparece de la distribución en <strong>2023</strong>, partiendo de un <p class="porcentaje">0.26%</p> en <strong>2022</strong>.</p>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-dcs">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                    <h4 class="card-header__title m-0">4.2 Distribución % de créditos por categoría (trimestre)</h4>
+                                    <div>
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido10') & ocultar('contenido11')" value="2022">
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido11') & ocultar('contenido10')" value="2023">
+                                    </div>
+                                </div>
+                                <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                    <form style="text-align: center;">  
+                                        <div class="d-flex align-items-center">       
+                                            <iframe width="815" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1258149839&amp;format=interactive" id="contenido10"></iframe>                                            
+                                            <iframe width="717" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=640920794&amp;format=interactive" id="contenido11" class="oculto"></iframe>                                        </div>
+                                    </form>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                    <div class="text"> <br><br>
+                                        <p>En <strong>2022</strong>, el <strong>segmento E</strong> domina claramente cada trimestre, con  un <p class="porcentaje">20.54%</p> aunque con una ligera disminución hacia el final del año. </p>
+                                        <p>Los <strong>segmentos C y B</strong> permanecen relativamente estables a lo largo de los trimestres. Por su parte, el <strong>segmento D</strong> no figura en <strong>2022</strong> pero tampoco en <strong>2023</strong>, sugiriendo que no se asignaron créditos a este grupo. </p>
+                                       <p>Los <strong>segmentos A y S</strong> experimentan disminuciones en sus porcentajes a lo largo del año.</p>
+                                        <p>La ausencia del <strong>segmento L</strong> en ambos años podría indicar una falta de oferta o demanda en ese rango de precios. </p>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <ul class="nav navbar-nav align-items-center">
+                                        <button type="button"
+                                                class="mr-auto"
+                                                style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                data-toggle="modal"
+                                                data-placement="bottom"
+                                                data-target="#modal-large-dcc">
+                                            <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                        </button>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                            <h4 class="card-header__title m-0">4.3	Distribución de créditos por monto</h4> 
+                                            <div>
+                                                <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido5') & ocultar('contenido6')" value="2022">
+                                                <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido6') & ocultar('contenido5')" value="2023">
+                                            </div>
+                                        </div>
+                                        <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                            <form style="text-align: center;">  
+                                                <div class="d-flex align-items-center">       
+                                                    <iframe width="658" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1678960876&amp;format=interactive" id="contenido5"></iframe>                                                    
+                                                    <iframe width="690" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=2025056260&amp;format=interactive" id="contenido6" class="oculto"></iframe>                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="card-header bg-white d-flex align-items-center"></div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0" >interpretación: </h4>
+                                            <div class="text"> 
+                                               <p>La distribución de créditos por montos muestra una clara disminución en el número de créditos otorgados en todos los rangos de precio de <strong>2022 a 2023</strong>. </p>
+                                               <p>En <strong>2022</strong>, la mayoría de los créditos se concentraron en el rango más bajo, de <strong>$0 a $1,000,000</strong>, con un total de <strong>317 créditos</strong>. </p>
+                                               <p>Sin embargo, en <strong>2023</strong>, los créditos en este rango cayeron a solo <strong>68</strong>. En los rangos medios, de <strong>$1,000,001 a $3,000,000</strong>, también se aprecia una reducción significativa en la cantidad de créditos otorgados.</p>
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-dcm">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                    <h4 class="card-header__title m-0">4.4.	Promedio de valor de Créditos para casas nueva y para vivienda usada</h4>
+                                    <div>
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido18') & ocultar('contenido19') & ocultar('contenido20')& ocultar('contenido12')& ocultar('contenido13')" value="2019">
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido19') & ocultar('contenido18') & ocultar('contenido20')& ocultar('contenido12')& ocultar('contenido13')" value="2020">
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido20') & ocultar('contenido18') & ocultar('contenido19')& ocultar('contenido12')& ocultar('contenido13')" value="2021">
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido12') & ocultar('contenido18') & ocultar('contenido19')& ocultar('contenido20')& ocultar('contenido13')" value="2022">
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido13') & ocultar('contenido18') & ocultar('contenido19')& ocultar('contenido20')& ocultar('contenido12')" value="2023">
+                                    </div>
+                                </div>
+                                <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                    <form style="text-align: center;">  
+                                        <div class="d-flex align-items-center">
+                                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=324327785&amp;format=interactive" id="contenido18"></iframe>                                            
+                                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1129887420&amp;format=interactive" id="contenido19" class="oculto"></iframe>                                            
+                                            <iframe width="565" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1050602365&amp;format=interactive" id="contenido20" class="oculto"></iframe>                                            
+                                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=794496367&amp;format=interactive" id="contenido12" class="oculto"></iframe>                                            
+                                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=2051579801&amp;format=interactive" id="contenido13" class="oculto"></iframe>                                        </div>
+                                    </form>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                    <div class="text"> En la gráfica podemos ver el comportamiento del promedio de valor de crédito para viviendas nuevas y usadas a lo largo de los últimos años.<br><br>
+                                        <div>
+                                            <ul>
+                                                <li>En <strong>2019</strong>  los créditos para viviendas nuevas y usadas muestran una convergencia hacia el cuarto trimestre. </li>
+                                                <li>En <strong>2020 y 2021</strong> los créditos para viviendas nuevas se incrementan sustancialmente, especialmente en los últimos trimestres, distanciándose de los valores de viviendas usadas, que se mantienen más estables. </li>
+                                                <li>En <strong>2022</strong> se nota una caída en los valores de créditos para viviendas nuevas, mientras que los de viviendas usadas aumentan </li>
+                                                <li>En <strong>2023</strong> el patrón cambia con un incremento notable en el valor de los créditos para viviendas nuevas en el último trimestre, mientras que los créditos para viviendas usadas disminuyen después de un pico en el tercer trimestre. </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <ul class="nav navbar-nav align-items-center">
+                                        <button type="button"
+                                                class="mr-auto"
+                                                style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                data-toggle="modal"
+                                                data-placement="bottom"
+                                                data-target="#modal-large-pvc">
+                                            <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                        </button>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex align-items-center">
+                                            <h4 class="card-header__title m-0">4.5 Estacionalidad</h4> 
+                                        </div>
+                                        <p style="text-align: center;">
+                                            <iframe width="648" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1537992604&amp;format=interactive"></iframe>                                        </p>
+                                        <div class="card-header bg-white d-flex align-items-center"></div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                            <p>
+                                                
+                                            <div class="text"> 
+                                                Comparando los créditos otorgados en <strong>2022 y 2023</strong>, vemos una disminución en el número total a lo largo de los trimestres. El año inicia con <strong>125 créditos</strong> en el primer trimestre de <strong>2022</strong>, y se observa un incremento hasta <strong>156</strong> en el tercer trimestre, seguido de una leve caída a <strong>146</strong>146 en el cuarto trimestre.     
+                                               <ul>
+                                                   <li> El año inicia con 125 créditos en el primer trimestre de <strong>2022</strong>, y se observa un incremento hasta <strong>156</strong> en el tercer trimestre, seguido de una leve caída a <strong>146</strong> en el cuarto trimestre. </li>
+                                                    <li>En <strong>2023</strong>2023, la tendencia general es descendente: comenzando con <strong>99 créditos</strong> en el primer trimestre y cerrando con solo <strong>70</strong> en el cuarto trimestre. </li>
+                                                </ul> 
+                                               </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-est">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                            <h4 class="card-header__title m-0">4.6 Créditos por porcentaje de UMAS</h4> 
+                                            <div>
+                                                <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido7') & ocultar('contenido8')" value="2022">
+                                                <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido8') & ocultar('contenido7')" value="2023">
+                                            </div>
+                                        </div>
+                                        <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                            <form style="text-align: center;">  
+                                                <div class="d-flex align-items-center">       
+                                                    <iframe width="731" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1169644167&amp;format=interactive" id="contenido7"></iframe>
+                                                    <iframe width="764" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=2032352425&amp;format=interactive" id="contenido8" class="oculto"></iframe>                                                
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="card-header bg-white d-flex align-items-center"></div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                            <div class="text"> 
+                                                <p>Los créditos en <strong>UMAS</strong> (Unidades de Medida y Actualización) para los años <strong>2022 y 2023</strong>, la mayoría de los créditos se otorgaron en el rango de <strong>2.61 a 4.00 UMAS</strong> en ambos años, aunque con una pequeña disminución en el porcentaje del <strong>2023</strong>. </p>
+                                                <p>Los créditos más bajos, de <strong>2.60 UMAS</strong> o menos, representan un porcentaje considerable en <strong>2022</strong>, pero este disminuye en <strong>2023</strong>. </p>
+                                                <p>En los rangos medios de <strong>4.01</strong> a <strong>6.00</strong> y de <strong>6.01</strong> a <strong>9.00 UMAS</strong>, los porcentajes se mantienen relativamente estables de un año a otro.</p>
+                                                                                           
+                                            </div>
+                                        </div>
+                                        <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                            <ul class="nav navbar-nav align-items-center">
+                                                <button type="button"
+                                                        class="mr-auto"
+                                                        style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                        data-toggle="modal"
+                                                        data-placement="bottom"
+                                                        data-target="#modal-large-umas">
+                                                    <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                                </button>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                            
+                            <div class="card">
+                                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                    <h4 class="card-header__title m-0">4.7	Distribución % de créditos por organismo</h4>
+                                    <div>
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido14') & ocultar('contenido15')" value="2022">
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido15') & ocultar('contenido14')" value="2023">
+                                    </div>
+                                </div>
+                                <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                    <form style="text-align: center;">  
+                                        <div class="d-flex align-items-center">
+                                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=583222240&amp;format=interactive" id="contenido14"></iframe>
+                                            <iframe width="743" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=321098438&amp;format=interactive" id="contenido15" class="oculto"></iframe>                                        </div>
+                                    </form>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                    <div class="text">
+                                        <ul>
+                                            <li>En <strong>2022</strong>, <strong>INFONAVIT</strong> fue el líder en otorgamiento de créditos, representando el <p class="porcentaje">41.8%</p> del total, seguido por <strong>FOVISSSTE</strong> con <p class="porcentaje">29.5%</p>, y <strong>CNBV</strong> con <p class="porcentaje">24.5%</p>. <strong>SHF</strong> participó con <p class="porcentaje">4.1%</p>, y Banjercito tuvo una mínima representación con solo el <p class="porcentaje">0.2%</p>.</li>
+                                            <p>Avanzando a <strong>2023</strong>, tras una revisión de los datos, encontramos que <strong>INFONAVIT</strong> mantuvo su predominio, aunque con una proporción ajustada al <p class="porcentaje">51.5%</p>. FOVISSSTE aumentó su cuota a <p class="porcentaje">24.2%</p>, mientras que la <strong>CNBV</strong> registró un <p class="porcentaje">21.4%</p>. En este período, <strong>SHF</strong> contribuyó con un <p class="porcentaje">2.6%</p>, y <strong>Banjercito</strong> ligeramente aumentó su aporte al <p class="porcentaje">0.3%</p>.</p>
+                                            <p> Estos porcentajes reflejan una distribución más equitativa entre los principales organismos de financiamiento, aunque <strong>INFONAVIT</strong> sigue siendo el pilar del sector.</p>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <ul class="nav navbar-nav align-items-center">
+                                        <button type="button"
+                                                class="mr-auto"
+                                                style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                data-toggle="modal"
+                                                data-placement="bottom"
+                                                data-target="#modal-large-dco">
+                                            <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                        </button>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                    <h4 class="card-header__title m-0">4.8	Distribución % de créditos por vivienda valor</h4>
+                                    <div>
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido16') & ocultar('contenido17')" value="2022">
+                                        <input type="button" class="btn btn-outline-dark" onclick="mostrar('contenido17') & ocultar('contenido16')" value="2023">
+                                    </div>
+                                </div>
+                                <div class="card-header bg-white d-flex justify-content-center align-items-center">
+                                    <form style="text-align: center;">  
+                                        <div class="d-flex align-items-center">
+                                            <iframe width="692" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1072291730&amp;format=interactive" id="contenido16"></iframe>
+                                            <iframe width="743" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS08osNYPUXOfVUZW8eIkoEZFkj4T9pN8ErMpaQz5k7E2fUDP0OMjAlp8lGpvyfq88RB91YpWJNi9fN/pubchart?oid=1765764043&amp;format=interactive" id="contenido17" class="oculto"></iframe>                                        </div>
+                                    </form>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <h4 class="card-header__title flex m-0" >Interpretación: </h4>
+                                    <div class="text"> 
+                                    <ul>
+                                        <li>En <strong>2022</strong>, observamos una distribución de créditos por valor de vivienda donde las categorías Tradicional y Media predominaban, representando el <p class="porcentaje">39.7% y 40.6%</p> respectivamente. Las viviendas Económicas y Populares representaban una menor porción, con <p class="porcentaje">16.2% y 11.7%</p>, mientras que la Residencial Plus apenas figuraba con un <p class="porcentaje">0.2%</p>.</li>
+                                        <li>Para <strong>2023</strong>, la tendencia muestra un aumento significativo en viviendas de valor Popular, que suben al <p class="porcentaje">22.0%</p>, y un incremento en la categoría Residencial al <p class="porcentaje">11.5%</p>. Mientras, la proporción de viviendas Tradicional y Media disminuye ligeramente a <p class="porcentaje">32.4% y 33.8%</p>. Además, las viviendas Económicas decrecen a la mitad, alcanzando un <p class="porcentaje">8.1%</p>, y las de Residencial Plus experimentan un leve aumento al <p class="porcentaje">0.3%.</p></li>
+                                        <p>Estos cambios reflejan un ajuste en las preferencias del mercado o en la oferta disponible en diferentes segmentos de vivienda en el año <strong>2023</strong>.</p>
+                                    </ul>
+                                    </div>
+                                </div>
+                                <div class="px-4 py-3" style="background-color: #FAFBFE;">
+                                    <ul class="nav navbar-nav align-items-center">
+                                        <button type="button"
+                                                class="mr-auto"
+                                                style="color: #000000; height: 40px; border: #FAFBFE; border-radius: 8px; padding: 5px 15px;"
+                                                data-toggle="modal"
+                                                data-placement="bottom"
+                                                data-target="#modal-large-dcv">
+                                            <i class="material-icons icon-14pt text-success">info</i> Descripción
+                                        </button>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // END drawer-layout__content -->
+
+                    <div class="mdk-drawer  js-mdk-drawer "
+                         id="default-drawer"
+                         data-align="start"
+                         style="color: darkgray;">
+                        <div class="mdk-drawer__content" >
+                            <div class="sidebar sidebar-light sidebar-left sidebar-p-t bg-dark"
+                                 data-perfect-scrollbar>
+                                <div class="sidebar-heading" style="color: darkgray;">Menu</div>
+                                <ul class="sidebar-menu">
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button"
+                                           href="inicio.php">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="color: darkgray;">dvr</i>
+                                            <span class="sidebar-menu-text" style="color: darkgrey;" >Inicio</span>   
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button"
+                                           href="ttam.html">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="color: darkgray;">assessment</i>
+                                            <span class="sidebar-menu-text" style="color: darkgray;">Analisis de Mercado</span>
+                                            
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button"
+                                           href="ttam.html">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="color: darkgray;">assessment</i>
+                                            <span class="sidebar-menu-text" style="color: darkgray;">Investigacion de Mercado</span>
+                                            
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button"
+                                           href="ttpt.html">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="color: darkgray;">assessment</i>
+                                            <span class="sidebar-menu-text" style="color: darkgray;">Proyecciones y Tendencias</span>
+                                            
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons" style="color: darkgray;"></i>
+                                            <div >
+                                                <ul class=" nav navbar-nav align-items-end">
+                                                    <input type="button" 
+                                                class=""
+                                                data-toggle="modal"
+                                                data-placement="bottom"
+                                                data-target="#modal-large"
+                                                value="Clasificación de mercado">
+                                                </ul>
+                                            </div>                                            
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- // END drawer-layout -->
+            </div>
+            <!-- // END header-layout__content -->
+        </div>
+        <!-- // END header-layout -->
+        <div id="modal-large"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="modal-large-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center align-items-center"> 
+                        <div class="text-align"
+                            id="modal-large-title">Para comprender mejor el dinámico y amplio mercado inmobiliario, se desarrolla una clasificación por segmentos <strong>(S, A, B, C, D, E)</strong> basada en la oferta de precios de las viviendas. Dicha segmentación proporciona una visión rápida y clara que facilita el análisis de las opciones actuales disponibles, que van desde propiedades asequibles hasta lujosas residencias. <strong> ¡Descubre el rango de posibilidades que el mercado tiene para ofrecer!</strong> </div>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- // END .modal-header -->
+                    <div class="modal-body">
+                        <h2 class="text-center"> Clasificación de mercado</h2> <br>
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-10 col-md-3 table-responsive">
+                                <table class="table table-sm">
+                                    <tr bgcolor="#6773df">
+                                        <th style="color: white;" scope="col" colspan="2" class="text-center" >E</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">E1</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> <$500K  </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">E2</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> $500k - $750K</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">E3</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;">$750K - $1M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-10 col-md-3 table-responsive">
+                                <table class="table table-sm">
+                                    <tr bgcolor="#67c2df">
+                                        <th style="color: white;" scope="col" colspan="2" class="text-center" >D</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">D1</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> $1M - $1.25M  </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">D2</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> $1.25M - $1.5M</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">D3</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;">$1.5M - $1.75M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-10 col-md-3 table-responsive">
+                                <table class="table table-sm">
+                                    <tr bgcolor="#7cc668">
+                                        <th style="color: white;" scope="col" colspan="2" class="text-center" >C</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">C1</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;">$1.75M - $2M  </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">C2</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> $2M - $2.25M</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-2 py-3">C3</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;">$2.25M - $2.5M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-10 col-md-3 table-responsive">
+                                <table class="table table-sm">
+                                    <tr bgcolor="#ffb038">
+                                        <th style="color: white;" scope="col" colspan="2" class="text-center" >B</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" class="text-left px-2 py-3">B1</th>
+                                            <td class="text-center" style="background-color: #FAFBFE;"> $2.5M - $2.75M  </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-left px-2 py-3">B2</th>
+                                            <td class="text-center" style="background-color: #FAFBFE;"> $2.75M - $3M</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-left px-2 py-3">B3</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;">$3M - $3.25M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-10 col-md-3 table-responsive">
+                                <table class="table table-sm">
+                                    <tr bgcolor="#ff4853">
+                                        <th style="color: white;" scope="col" colspan="2" class="text-center" >A</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-center px-2 py-3" scope="row">A1</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> $3.25M - $3.5M  </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-1 py-3">A2</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> $3.5M - $3.75M</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-1 py-3">A3</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;">$3.75M - $4M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-10 col-md-3 table-responsive">
+                                <table class="table table-sm">
+                                    <tr bgcolor="#3d45c0">
+                                        <th style="color: white;" scope="col" colspan="2" class="text-center" >S</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-center px-2 py-3" scope="row">S1</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> $4M - $6M  </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-1 py-3">S2</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;"> $6M - $8M</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row" class="text-center px-1 py-3">S3</th>
+                                            <td class="text-center px-2 py-3" style="background-color: #FAFBFE;">$8M - $12M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- // END .modal-content -->
+            </div> <!-- // END .modal-dialog -->
+        </div> <!-- // END .modal -->
+        </div> 
+
+        <!-- Interpretaciones -->
+        <!--1.1. Distribución de la población por edad y género-->
+        <div id="modal-large-dpeg"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="modal-large-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center align-items-center"> 
+                        <div class="text-align"
+                            id="modal-large-title">Descripción</div>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- // END .modal-header -->
+                    <div class="modal-body text-left" style="color: black;"  > 
+                        <br><br>
+                        Distribución demográfica por rango de edad y género. La gráfica proporciona una representación visual de la población de Tlaxcala para 2023, segmentada por rangos de edad y género para observar cómo se distribuye la población en el estado. 
+                    </div>   
+                    
+                </div> <!-- // END .modal-content -->
+            </div> <!-- // END .modal-dialog -->
+        </div> 
+
+        <!--1.2 Distribución de la población por edad y género Tlaxcala-->
+        <div id="modal-large-dpegp"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="modal-large-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center align-items-center"> 
+                        <div class="text-align"
+                            id="modal-large-title">Descripción</div>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- // END .modal-header -->
+                    <div class="modal-body text-left" style="color: black;"  > 
+                        Distribución demográfica por rango de edad y género. La gráfica proporciona una representación visual de la población de <strong>Tlaxcala</strong> para <strong>2023</strong>, segmentada por rangos de edad y género para observar cómo se distribuye la población en la zona.                         <br><br>
+                    </div>   
+                    
+                </div> <!-- // END .modal-content -->
+        </div>
+    </div> <!-- // END .modal-dialog -->
+
+        <!--1.2 Distribución de la población por edad y género Tlaxcala-->
+        <div id="modal-large-dcge"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="modal-large-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center align-items-center"> 
+                        <div class="text-align"
+                            id="modal-large-title">Descripción</div>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- // END .modal-header -->
+                    <div class="modal-body text-left" style="color: black;"  > 
+                        <p>Distribución de créditos por grupos de edad. Identifica cómo se distribuyen los préstamos en función de un grupo demográfico que revela que grupos etarios están accediendo más a los préstamos y cuales pueden tener una menor participación en este aspecto.</p>
+                        <ul>
+                            <li>Si una barra es alta, significa que la cantidad de préstamos otorgados a personas de esa edad es significativa.</li>
+                            <li>Si una barra es menor, indica que existen menos créditos otorgados en ese rango de edad.</li>
+                        </ul>                         <br><br>
+                    </div>   
+                </div> <!-- // END .modal-content -->
+            </div> <!-- // END .modal-dialog -->
+        </div>
+
+        <!--2. Precio Oferta-->
+        <div id="modal-large-po"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="modal-large-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center align-items-center"> 
+                        <div class="text-align"
+                            id="modal-large-title">Descripción</div>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- // END .modal-header -->
+                    <div class="modal-body text-left" style="color: black;"  > 
+                        <p>Precios de oferta para viviendas desde octubre de 2022 hasta septiembre de 2023. Explora la tendencia de los precios de las casas en este periodo de tiempo para la toma de decisiones inteligentes.</p>
+                                                    <ul>
+                                                    <li>Si se observa una tendencia ascendente, significa que los precios están aumentando, lo cual puede indicar una demanda alta en el mercado de viviendas.</li>
+                                                    <li>Si muestra una tendencia a la baja, indica que los precios están disminuyendo. Esto podría ser una señal para los vendedores de que podrían obtener un precio mejor si esperan un poco más.</li>
+                                                    <li>Si se mantiene relativamente plana sugiere que los precios están bastante firmes, señal de un mercado inmobiliario estable y predecible.</li>
+                                                    </ul>
+                    </div>   
+                    
+                </div> <!-- // END .modal-content -->
+            </div> <!-- // END .modal-dialog -->
+        </div> 
+
+        <!--2.1. MediandaPrecio Oferta-->
+        <div id="modal-large-mpo"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="modal-large-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center align-items-center"> 
+                        <div class="text-align"
+                            id="modal-large-title">Descripción</div>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- // END .modal-header -->
+                    <div class="modal-body text-left" style="color: black;"  > 
+                        Representación de la mediana de precios en el mercado durante el período de 2022-2023.
+                                                Observa una vista general en la tendencia de precios medianos en el mercado de viviendas durante el periodo considerado.<br><br>  
+                                                <div>
+                                                    <ul>
+                                                        <li>Si la mediana es alta, esto sugiere que, las casas se vendieron a precios relativamente altos en ese periodo, esto indica un mercado inmobiliario robusto o alta demanda de propiedades.</li>
+                                                        <li>Si la mediana es baja, implica que los precios promedio fueron más asequibles. Esto podría señalar un mercado más accesible para compradores.</li>
+                                                    </ul>
+                                                </div>
+                    </div>  
+                </div> <!-- // END .modal-content -->
+            </div> <!-- // END .modal-dialog -->
+        </div> 
+
+        <!--2.3 Porcentaje de vivienda ofertadas por antigüedad-->
+        <div id="modal-large-pvoa"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="modal-large-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center align-items-center"> 
+                        <div class="text-align"
+                            id="modal-large-title">Descripción</div>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- // END .modal-header -->
+                    <div class="modal-body text-left" style="color: black;"  > 
+                        Proporción de las viviendas ofertadas por años de antigüedad de 2022-2023. 
+                                                Visualiza el panorama y la dinámica de la concentración en función de las propiedades construidas en un rango especifico de años. <br><br>
+                                                <div>
+                                                    <ul>
+                                                        <li>Si se tiene una gran concentración de casas construidas en un rango de años específico, podría indicar una alza en construcción u oferta en ese periodo de tiempo.</li>
+                                                        <li>Si la distribución tiene tendencia baja, podría sugerir que las casas de diferentes edades están disponibles en cantidades menores. Esto puede ser relevante para conocer la oferta específica de la vivienda.</li>
+                                                    </ul>
+                                                </div>
+                    </div>  
+                </div> <!-- // END .modal-content -->
+            </div> <!-- // END .modal-dialog -->
+        </div> 
+
+        <!--3.1 Distribución de propiedades por segmento-->
+        <div id="modal-large-dps"
+             class="modal fade"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="modal-large-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg"
+                 role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center align-items-center"> 
+                        <div class="text-align"
+                            id="modal-large-title">Descripción</div>
+                        <button type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> <!-- // END .modal-header -->
+                    <div class="modal-body text-left" style="color: black;"  > 
+                        Concentración y distribución de propiedades por segmento de mercado, durante 2022- 2023.<br><br>
+                        <div>
+                            <ul>
+                                <li>Si las etiquetas están agrupadas en una zona específica esto puede ser indicativo de un mercado inmobiliario particularmente activo o demandado en ese lugar.</li>
+                                <li>Si las etiquetas están más uniformes esto puede indicar un mercado más diversificado o una demanda más equitativa en distintos tipos de propiedades.</li>
+                            </ul>
+                        </div>
+                    </div>  
+                </div> <!-- // END .modal-content -->
+            </div> <!-- // END .modal-dialog -->
+        </div> 
+
+         <!--3.2 Promedio de precio por segmento-->
+         <div id="modal-large-pps"
+         class="modal fade"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="modal-large-title"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg"
+             role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center align-items-center"> 
+                    <div class="text-align"
+                        id="modal-large-title">Descripción</div>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> <!-- // END .modal-header -->
+                <div class="modal-body text-left" style="color: black;"  > 
+                    Clasificación de mercados por segmento e índice de precio asociados a cada uno de ellos.<br><br>
+                    <div>
+                        <ul>
+                            <li>Esta representación es útil para indicar qué tipos de propiedades están más valoradas y cuáles son más accesibles para los compradores.</li>
+                        </ul>
+                    </div>
+                </div>  
+            </div> <!-- // END .modal-content -->
+        </div> <!-- // END .modal-dialog -->
+        </div> 
+
+        <!--3.3 Tendencias de precios por segmento-->
+        <div id="modal-large-tps"
+        class="modal fade"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modal-large-title"
+        aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered modal-lg"
+            role="document">
+           <div class="modal-content">
+               <div class="modal-header justify-content-center align-items-center"> 
+                   <div class="text-align"
+                       id="modal-large-title">Descripción</div>
+                   <button type="button"
+                           class="close"
+                           data-dismiss="modal"
+                           aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div> <!-- // END .modal-header -->
+               <div class="modal-body text-left" style="color: black;"  > 
+                Variación y cambio precios que se han presentado en cada trimestre entre el 2022 y 2023, correspondientes a las diferentes clasificaciones y/o segmentos de mercado. <br><br>
+                <div>
+                    <ul>
+                        <li>Si la variación sube, indica un aumento en los precios de las viviendas, lo que puede sugerir que el mercado inmobiliario está en alza durante el periodo de estudio.</li>
+                        <li>Si la variación baja, significa que los precios de las viviendas han disminuido, lo que podría indicar un mercado más asequible en el período de estudio..</li>
+                    </ul>
+                </div>
+               </div>  
+           </div> <!-- // END .modal-content -->
+       </div> <!-- // END .modal-dialog -->
+       </div> 
+
+       <!--4.1 Distribución de créditos por segmento-->
+       <div id="modal-large-dcs"
+       class="modal fade"
+       tabindex="-1"
+       role="dialog"
+       aria-labelledby="modal-large-title"
+       aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg"
+           role="document">
+          <div class="modal-content">
+              <div class="modal-header justify-content-center align-items-center"> 
+                  <div class="text-align"
+                      id="modal-large-title">Descripción</div>
+                  <button type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div> <!-- // END .modal-header -->
+              <div class="modal-body text-left" style="color: black;"  > 
+                Distribución de créditos para viviendas adquiridos para cada segmento del mercado. Contempla que tipo de propiedades son más populares entre los compradores que utilizan financiamiento.<br><br>
+                <div>
+                    <ul>
+                        <li>Si se tiene una concentración alta, significa que se han otorgado muchos créditos para este sector. Esto puede indicar que son una opción popular para los clientes que buscan financiamiento.</li>
+                        <li>Si se tiene una concentración menor, implica que se han otorgado menos créditos para este tipo de viviendas en comparación con otras.</li>
+                    </ul>
+                </div>
+              </div>  
+          </div> <!-- // END .modal-content -->
+      </div> <!-- // END .modal-dialog -->
+      </div> 
+
+      <!--4.2 Distribución de créditos por categoria-->
+      <div id="modal-large-dcc"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modal-large-title"
+      aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered modal-lg"
+          role="document">
+         <div class="modal-content">
+             <div class="modal-header justify-content-center align-items-center"> 
+                 <div class="text-align"
+                     id="modal-large-title">Descripción</div>
+                 <button type="button"
+                         class="close"
+                         data-dismiss="modal"
+                         aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div> <!-- // END .modal-header -->
+             <div class="modal-body text-left" style="color: black;"  > 
+                Distribución de créditos otorgados para las propiedades en diferentes segmentos (S, A, B, C, D, E) por trimestre.En función del porcentaje, observa cómo se agrupan los créditos para viviendas según su segmento en el mercado durante 2022-2023, permitiendo una visión clara y rápida de cómo se distribuyen y cuales son más predominantes en el mercado inmobiliario.
+             </div>  
+         </div> <!-- // END .modal-content -->
+     </div> <!-- // END .modal-dialog -->
+     </div> 
+
+     <!--4.3 Distribución de créditos por monto-->
+     <div id="modal-large-dcm"
+     class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="modal-large-title"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"
+         role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center align-items-center"> 
+                <div class="text-align"
+                    id="modal-large-title">Descripción</div>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> <!-- // END .modal-header -->
+            <div class="modal-body text-left" style="color: black;"  > 
+                Distribución de créditos otorgados para cada rango de monto entre el <strong>2022 y el 2023</strong>. Explora una visión de los créditos para viviendas en términos de cantidad de dinero y observa el alcance de los préstamos en el mercado inmobiliario.
+                        
+            </div>  
+        </div> <!-- // END .modal-content -->
+    </div> <!-- // END .modal-dialog -->
+    </div>
+
+    <!--4.4. Promedio de valor de Créditos para casas nueva y para vivienda usada-->
+    <div id="modal-large-pvc"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modal-large-title"
+    aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg"
+        role="document">
+       <div class="modal-content">
+           <div class="modal-header justify-content-center align-items-center"> 
+               <div class="text-align"
+                   id="modal-large-title">Descripción</div>
+               <button type="button"
+                       class="close"
+                       data-dismiss="modal"
+                       aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+               </button>
+           </div> <!-- // END .modal-header -->
+           <div class="modal-body text-left" style="color: black;"  > 
+            <p>
+                Tendencia del valor promedio de los créditos para viviendas nuevas y de uso a lo largo de 2022 en el mercado inmobiliario.
+            </p>     
+            <ul>
+                <li>Si se observa una tendencia ascendente, significa que el valor promedio de los créditos ha ido aumentando a lo largo del año.</li>
+                <li>Si muestra una tendencia descendente, señala que la media de los precios ha disminuido.</li>
+                <li>Si se observan picos en la tendencia puede indicar momentos en el que el mercado experimentó un aumento significativo en el valor de los créditos , por el contrario, si se observan caídas podrían representar periodos de disminución.</li>
+            </ul>                  
+           </div>  
+       </div> <!-- // END .modal-content -->
+   </div> <!-- // END .modal-dialog -->
+   </div>
+
+   <!--4.5. Estacionalidad-->
+   <div id="modal-large-est"
+   class="modal fade"
+   tabindex="-1"
+   role="dialog"
+   aria-labelledby="modal-large-title"
+   aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg"
+       role="document">
+      <div class="modal-content">
+          <div class="modal-header justify-content-center align-items-center"> 
+              <div class="text-align"
+                  id="modal-large-title">Descripción</div>
+              <button type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div> <!-- // END .modal-header -->
+          <div class="modal-body text-left" style="color: black;"  > 
+            Número de créditos para vivienda adquiridos por trimestre en los años 2022 y 2023. 
+            Proporciona una representación visual de cómo ha variado la adquisición de créditos hipotecarios en diferentes trimestres.
+          </div>  
+      </div> <!-- // END .modal-content -->
+  </div> <!-- // END .modal-dialog -->
+  </div>
+
+  <!--4.6 UMAS-->
+  <div id="modal-large-umas"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="modal-large-title"
+  aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-lg"
+      role="document">
+     <div class="modal-content">
+         <div class="modal-header justify-content-center align-items-center"> 
+             <div class="text-align"
+                 id="modal-large-title">Descripción</div>
+             <button type="button"
+                     class="close"
+                     data-dismiss="modal"
+                     aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+             </button>
+         </div> <!-- // END .modal-header -->
+         <div class="modal-body text-left" style="color: black;"  > 
+           Número de créditos para vivienda adquiridos por trimestre en los años 2022 y 2023. 
+           Proporciona una representación visual de cómo ha variado la adquisición de créditos hipotecarios en diferentes trimestres.
+         </div>  
+     </div> <!-- // END .modal-content -->
+ </div> <!-- // END .modal-dialog -->
+ </div>
+
+ <!--4.7 Distribución % de créditos por organismo-->
+ <div id="modal-large-dco"
+ class="modal fade"
+ tabindex="-1"
+ role="dialog"
+ aria-labelledby="modal-large-title"
+ aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg"
+     role="document">
+    <div class="modal-content">
+        <div class="modal-header justify-content-center align-items-center"> 
+            <div class="text-align"
+                id="modal-large-title">Descripción</div>
+            <button type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div> <!-- // END .modal-header -->
+        <div class="modal-body text-left" style="color: black;"  >
+            Distribución de créditos por vivienda valor <strong>2022-2023</strong>. Visualiza los porcentajes que representan las proporciones de los créditos otorgados al valor de la vivienda clasificado en: <strong>Economía, Popular, Tradicional, Media, Residencial y Residencial plus</strong>.
+        </div>  
+    </div> <!-- // END .modal-content -->
+</div> <!-- // END .modal-dialog -->
+</div>
+
+ <!--4.8	Distribución % de créditos por vivienda valor-->
+    <div id="modal-large-dcv"
+    class="modal fade"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modal-large-title"
+    aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg"
+        role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center align-items-center"> 
+                <div class="text-align"
+                    id="modal-large-title">Descripción</div>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> <!-- // END .modal-header -->
+            <div class="modal-body text-left" style="color: black;"  >
+                Distribución de créditos por vivienda valor <strong>2022-2023</strong>. Visualiza los porcentajes que representan las proporciones de los créditos otorgados al valor de la vivienda clasificado en: <strong>Economía, Popular, Tradicional, Media, Residencial y Residencial plus</strong>.        
+            </div>  
+        </div> <!-- // END .modal-content -->
+    </div>
+    </div> <!-- // END .modal-dialog -->
+
+        <!-- App Settings FAB -->
+        <script src="assets/js/app-settings.js"></script>
+
+        <!-- jQuery -->
+        <script src="assets/vendor/jquery.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="assets/vendor/popper.min.js"></script>
+        <script src="assets/vendor/bootstrap.min.js"></script>
+
+        <!-- Perfect Scrollbar -->
+        <script src="assets/vendor/perfect-scrollbar.min.js"></script>
+
+        <!-- DOM Factory -->
+        <script src="assets/vendor/dom-factory.js"></script>
+
+        <!-- MDK -->
+        <script src="assets/vendor/material-design-kit.js"></script>
+
+        <!-- App -->
+        <script src="assets/js/toggle-check-all.js"></script>
+        <script src="assets/js/check-selected-row.js"></script>
+        <script src="assets/js/dropdown.js"></script>
+        <script src="assets/js/sidebar-mini.js"></script>
+        <script src="assets/js/app.js"></script>
+
+        <!-- App Settings (safe to remove) -->
+        <script src="assets/js/app-settings.js"></script>
+
+        <!-- Flatpickr -->
+        <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
+        <script src="assets/js/flatpickr.js"></script>
+
+        <!-- Global Settings -->
+        <script src="assets/js/settings.js"></script>
+
+        <!-- Moment.js -->
+        <script src="assets/vendor/moment.min.js"></script>
+        <script src="assets/vendor/moment-range.js"></script>
+
+        <!-- Chart.js -->
+        <script src="assets/vendor/Chart.min.js"></script>
+
+        <!-- App Charts JS -->
+        <script src="assets/js/charts.js"></script>
+        <script src="assets/js/chartjs-rounded-bar.js"></script>
+
+        <!-- Chart Samples -->
+        <script src="assets/js/page.dashboard.js"></script>
+        <script src="assets/js/progress-charts.js"></script>
+
+        <!-- Vector Maps -->
+        <script src="assets/vendor/jqvmap/jquery.vmap.min.js"></script>
+        <script src="assets/vendor/jqvmap/maps/jquery.vmap.world.js"></script>
+        <script src="assets/js/vector-maps.js"></script>
+
+    </body>
+
+</html>

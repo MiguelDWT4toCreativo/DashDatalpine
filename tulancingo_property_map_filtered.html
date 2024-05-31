@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7538e21c14c40a45ffe2b3318b6bd4d7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_7538e21c14c40a45ffe2b3318b6bd4d7" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7538e21c14c40a45ffe2b3318b6bd4d7 = L.map(
+                "map_7538e21c14c40a45ffe2b3318b6bd4d7",
+                {
+                    center: [20.0905, -98.3691],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 13,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_513f46ac187bda31ce8f6d5db83e6c86 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+            var circle_marker_f9d3561ccf6b4d78b624d59321cae610 = L.circleMarker(
+                [20.07854422354666, -98.39069513615107],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_8bcf50b3c01a6077517ed1db92ca212e = L.popup({"maxWidth": 300});
+
+        
+            var html_115b086d4d4842c2fb6a86f9883d2769 = $(`<div id="html_115b086d4d4842c2fb6a86f9883d2769" style="width: 100.0%; height: 100.0%;"><b>20 de noviembre</b><br>Precio Promedio: $1,290,000.00 MXN<br>Precio Mediano: $1,290,000.00 MXN<br>Baños Medianos: 3.0<br>Precio Mediano por m²: $10,750.00 MXN<br>Recámaras Medianas: 4.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 190.0 m²<br>Área Total Mediana: 120.0 m²</div>`)[0];
+            popup_8bcf50b3c01a6077517ed1db92ca212e.setContent(html_115b086d4d4842c2fb6a86f9883d2769);
+        
+
+        circle_marker_f9d3561ccf6b4d78b624d59321cae610.bindPopup(popup_8bcf50b3c01a6077517ed1db92ca212e)
+        ;
+
+        
+    
+    
+            var circle_marker_d29f64507c515a5f4acc6afbb3f27b3c = L.circleMarker(
+                [20.0750345, -98.4143103],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_07154a2d77fa5f89ad9b81bb400a4b64 = L.popup({"maxWidth": 300});
+
+        
+            var html_a72204abac27a9142ae517854fe066f1 = $(`<div id="html_a72204abac27a9142ae517854fe066f1" style="width: 100.0%; height: 100.0%;"><b>ampliacion javier rojo gomez</b><br>Precio Promedio: $1,041,250.00 MXN<br>Precio Mediano: $1,032,500.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $9,833.33 MXN<br>Recámaras Medianas: 2.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 74.5 m²<br>Área Total Mediana: 105.0 m²</div>`)[0];
+            popup_07154a2d77fa5f89ad9b81bb400a4b64.setContent(html_a72204abac27a9142ae517854fe066f1);
+        
+
+        circle_marker_d29f64507c515a5f4acc6afbb3f27b3c.bindPopup(popup_07154a2d77fa5f89ad9b81bb400a4b64)
+        ;
+
+        
+    
+    
+            var circle_marker_098ac788bbbd7f312902e6e389b5c276 = L.circleMarker(
+                [20.07290111723724, -98.33845278422518],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_c5db3e257a194f05c186f1a0329bf59a = L.popup({"maxWidth": 300});
+
+        
+            var html_4c95464314c997359ba737771338e650 = $(`<div id="html_4c95464314c997359ba737771338e650" style="width: 100.0%; height: 100.0%;"><b>bella vista</b><br>Precio Promedio: $790,000.00 MXN<br>Precio Mediano: $790,000.00 MXN<br>Baños Medianos: 2.0<br>Precio Mediano por m²: $6,929.82 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 206.0 m²<br>Área Total Mediana: 114.0 m²</div>`)[0];
+            popup_c5db3e257a194f05c186f1a0329bf59a.setContent(html_4c95464314c997359ba737771338e650);
+        
+
+        circle_marker_098ac788bbbd7f312902e6e389b5c276.bindPopup(popup_c5db3e257a194f05c186f1a0329bf59a)
+        ;
+
+        
+    
+    
+            var circle_marker_45e4c46cd7085576ddeb32a6187d0a7a = L.circleMarker(
+                [20.102616714285716, -98.3657166],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_2923ff37e5d8952cb35d41853c0e9c71 = L.popup({"maxWidth": 300});
+
+        
+            var html_80600a4a971d0eac61d0ddea62d79180 = $(`<div id="html_80600a4a971d0eac61d0ddea62d79180" style="width: 100.0%; height: 100.0%;"><b>caltengo</b><br>Precio Promedio: $1,510,000.00 MXN<br>Precio Mediano: $1,100,000.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $10,476.19 MXN<br>Recámaras Medianas: 2.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 77.0 m²<br>Área Total Mediana: 117.0 m²</div>`)[0];
+            popup_2923ff37e5d8952cb35d41853c0e9c71.setContent(html_80600a4a971d0eac61d0ddea62d79180);
+        
+
+        circle_marker_45e4c46cd7085576ddeb32a6187d0a7a.bindPopup(popup_2923ff37e5d8952cb35d41853c0e9c71)
+        ;
+
+        
+    
+    
+            var circle_marker_1c3dbd212db60b2f0cd63e51230d2281 = L.circleMarker(
+                [20.09204574698416, -98.3739293843933],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_43716b6f24e611429f5576854b69b3a0 = L.popup({"maxWidth": 300});
+
+        
+            var html_8f733d8e666ab900dbd0f3a258c6d865 = $(`<div id="html_8f733d8e666ab900dbd0f3a258c6d865" style="width: 100.0%; height: 100.0%;"><b>conjunto habitacional los mesones</b><br>Precio Promedio: $2,165,000.00 MXN<br>Precio Mediano: $2,390,000.00 MXN<br>Baños Medianos: 2<br>Precio Mediano por m²: $18,380.68 MXN<br>Recámaras Medianas: 2.5<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 140.0 m²<br>Área Total Mediana: 112.5 m²</div>`)[0];
+            popup_43716b6f24e611429f5576854b69b3a0.setContent(html_8f733d8e666ab900dbd0f3a258c6d865);
+        
+
+        circle_marker_1c3dbd212db60b2f0cd63e51230d2281.bindPopup(popup_43716b6f24e611429f5576854b69b3a0)
+        ;
+
+        
+    
+    
+            var circle_marker_89a99f192e2665cd9b09cd76a710bc9b = L.circleMarker(
+                [20.07106785634214, -98.35416259895018],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_96170a66cffc20cbc70b0a2077366e2f = L.popup({"maxWidth": 300});
+
+        
+            var html_fcdefd324739baba4367095666d0c2fc = $(`<div id="html_fcdefd324739baba4367095666d0c2fc" style="width: 100.0%; height: 100.0%;"><b>el paraiso</b><br>Precio Promedio: $3,300,000.00 MXN<br>Precio Mediano: $3,300,000.00 MXN<br>Baños Medianos: 3<br>Precio Mediano por m²: $3,145.85 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 2.0<br>Área Construida Mediana: 200.0 m²<br>Área Total Mediana: 1049.0 m²</div>`)[0];
+            popup_96170a66cffc20cbc70b0a2077366e2f.setContent(html_fcdefd324739baba4367095666d0c2fc);
+        
+
+        circle_marker_89a99f192e2665cd9b09cd76a710bc9b.bindPopup(popup_96170a66cffc20cbc70b0a2077366e2f)
+        ;
+
+        
+    
+    
+            var circle_marker_37fe9238a6dabe6846a46050477576fc = L.circleMarker(
+                [20.06593360254488, -98.40781814973755],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_a33b2899ba7bb01a3963b759e7e692e4 = L.popup({"maxWidth": 300});
+
+        
+            var html_e214feeb0fef3f3ad224686122593a21 = $(`<div id="html_e214feeb0fef3f3ad224686122593a21" style="width: 100.0%; height: 100.0%;"><b>el pedregal de san josé</b><br>Precio Promedio: $4,093,585.50 MXN<br>Precio Mediano: $4,093,585.50 MXN<br>Baños Medianos: 2.5<br>Precio Mediano por m²: $16,297.70 MXN<br>Recámaras Medianas: 4.0<br>Estacionamientos Medianos: 2.0<br>Área Construida Mediana: 377.5 m²<br>Área Total Mediana: 240.0 m²</div>`)[0];
+            popup_a33b2899ba7bb01a3963b759e7e692e4.setContent(html_e214feeb0fef3f3ad224686122593a21);
+        
+
+        circle_marker_37fe9238a6dabe6846a46050477576fc.bindPopup(popup_a33b2899ba7bb01a3963b759e7e692e4)
+        ;
+
+        
+    
+    
+            var circle_marker_f33ccb3a843b51e181b29a904776a865 = L.circleMarker(
+                [20.08595512360892, -98.37896565460056],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_ad7f77ede30d0d347bd4f4d64e5e5d48 = L.popup({"maxWidth": 300});
+
+        
+            var html_4714c61ff4c5daee1d876930bfb8a445 = $(`<div id="html_4714c61ff4c5daee1d876930bfb8a445" style="width: 100.0%; height: 100.0%;"><b>felipe angeles</b><br>Precio Promedio: $7,050,000.00 MXN<br>Precio Mediano: $7,050,000.00 MXN<br>Baños Medianos: 4.5<br>Precio Mediano por m²: $19,000.51 MXN<br>Recámaras Medianas: 4.5<br>Estacionamientos Medianos: 1.5<br>Área Construida Mediana: 445.0 m²<br>Área Total Mediana: 383.5 m²</div>`)[0];
+            popup_ad7f77ede30d0d347bd4f4d64e5e5d48.setContent(html_4714c61ff4c5daee1d876930bfb8a445);
+        
+
+        circle_marker_f33ccb3a843b51e181b29a904776a865.bindPopup(popup_ad7f77ede30d0d347bd4f4d64e5e5d48)
+        ;
+
+        
+    
+    
+            var circle_marker_0144634261cbae13f0dd729367fd49de = L.circleMarker(
+                [20.07202771986532, -98.34025879614148],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_617a29bc5dd3bf4f4668b01a45650fac = L.popup({"maxWidth": 300});
+
+        
+            var html_7b9832279c9ef72dfa368f51bc087790 = $(`<div id="html_7b9832279c9ef72dfa368f51bc087790" style="width: 100.0%; height: 100.0%;"><b>fracc jardines del paraiso</b><br>Precio Promedio: $505,000.00 MXN<br>Precio Mediano: $505,000.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $5,611.11 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 90.0 m²<br>Área Total Mediana: 90.0 m²</div>`)[0];
+            popup_617a29bc5dd3bf4f4668b01a45650fac.setContent(html_7b9832279c9ef72dfa368f51bc087790);
+        
+
+        circle_marker_0144634261cbae13f0dd729367fd49de.bindPopup(popup_617a29bc5dd3bf4f4668b01a45650fac)
+        ;
+
+        
+    
+    
+            var circle_marker_66c9d61cd69ad986d2e6b1febd9d6b6c = L.circleMarker(
+                [20.11197164993355, -98.41175829973754],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_a7466f776a02f20685f91e8288c6823f = L.popup({"maxWidth": 300});
+
+        
+            var html_ed532ecd7409d710ab7814b633be054a = $(`<div id="html_ed532ecd7409d710ab7814b633be054a" style="width: 100.0%; height: 100.0%;"><b>fracc privada campo alegre</b><br>Precio Promedio: $552,333.33 MXN<br>Precio Mediano: $520,000.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $8,000.00 MXN<br>Recámaras Medianas: 2.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 70.0 m²<br>Área Total Mediana: 65.0 m²</div>`)[0];
+            popup_a7466f776a02f20685f91e8288c6823f.setContent(html_ed532ecd7409d710ab7814b633be054a);
+        
+
+        circle_marker_66c9d61cd69ad986d2e6b1febd9d6b6c.bindPopup(popup_a7466f776a02f20685f91e8288c6823f)
+        ;
+
+        
+    
+    
+            var circle_marker_ddb710a4dee9b14aa68e9a18cac356cb = L.circleMarker(
+                [20.07854422354666, -98.39069513615107],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_dc3d51b26307d4c2746c0b8b841de870 = L.popup({"maxWidth": 300});
+
+        
+            var html_c4cb976091752234ac6f062dfb37093f = $(`<div id="html_c4cb976091752234ac6f062dfb37093f" style="width: 100.0%; height: 100.0%;"><b>fracc rincones de la hacienda 2</b><br>Precio Promedio: $765,000.00 MXN<br>Precio Mediano: $765,000.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $8,500.00 MXN<br>Recámaras Medianas: 2.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 55.0 m²<br>Área Total Mediana: 90.0 m²</div>`)[0];
+            popup_dc3d51b26307d4c2746c0b8b841de870.setContent(html_c4cb976091752234ac6f062dfb37093f);
+        
+
+        circle_marker_ddb710a4dee9b14aa68e9a18cac356cb.bindPopup(popup_dc3d51b26307d4c2746c0b8b841de870)
+        ;
+
+        
+    
+    
+            var circle_marker_d95499efa8af579b7a8e17cc58f024e0 = L.circleMarker(
+                [20.11223827961699, -98.41177234011325],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_9ca9ba3b306d5fdf27f1ae1db5bc1ba5 = L.popup({"maxWidth": 300});
+
+        
+            var html_794549cbaddc51f72a6c66b7a0b13c7a = $(`<div id="html_794549cbaddc51f72a6c66b7a0b13c7a" style="width: 100.0%; height: 100.0%;"><b>fraccionamiento campo alegre</b><br>Precio Promedio: $656,113.00 MXN<br>Precio Mediano: $617,000.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $6,170.00 MXN<br>Recámaras Medianas: 2.5<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 82.5 m²<br>Área Total Mediana: 100.0 m²</div>`)[0];
+            popup_9ca9ba3b306d5fdf27f1ae1db5bc1ba5.setContent(html_794549cbaddc51f72a6c66b7a0b13c7a);
+        
+
+        circle_marker_d95499efa8af579b7a8e17cc58f024e0.bindPopup(popup_9ca9ba3b306d5fdf27f1ae1db5bc1ba5)
+        ;
+
+        
+    
+    
+            var circle_marker_676f58e2012b8ca3b3ddc2c608399bff = L.circleMarker(
+                [20.13440618421047, -98.34262047184231],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_076dd9058fa581223711dbc9259f26d8 = L.popup({"maxWidth": 300});
+
+        
+            var html_ab05193078abda6fdb8020b84c466128 = $(`<div id="html_ab05193078abda6fdb8020b84c466128" style="width: 100.0%; height: 100.0%;"><b>fraccionamiento el mirador</b><br>Precio Promedio: $1,376,750.00 MXN<br>Precio Mediano: $960,000.00 MXN<br>Baños Medianos: 2<br>Precio Mediano por m²: $6,857.14 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 140.0 m²<br>Área Total Mediana: 140.0 m²</div>`)[0];
+            popup_076dd9058fa581223711dbc9259f26d8.setContent(html_ab05193078abda6fdb8020b84c466128);
+        
+
+        circle_marker_676f58e2012b8ca3b3ddc2c608399bff.bindPopup(popup_076dd9058fa581223711dbc9259f26d8)
+        ;
+
+        
+    
+    
+            var circle_marker_98cfe7e807459d098f48ac04b65dd455 = L.circleMarker(
+                [20.07147372657212, -98.37410437698365],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_9ea631d618c275a69b1aa0f2a6fc3560 = L.popup({"maxWidth": 300});
+
+        
+            var html_6a4997da3a2f5f727e949fd94fee35c0 = $(`<div id="html_6a4997da3a2f5f727e949fd94fee35c0" style="width: 100.0%; height: 100.0%;"><b>fraccionamiento jardines del sur</b><br>Precio Promedio: $16,148,148.58 MXN<br>Precio Mediano: $4,534,000.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $19,885.96 MXN<br>Recámaras Medianas: 4.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 360.0 m²<br>Área Total Mediana: 228.0 m²</div>`)[0];
+            popup_9ea631d618c275a69b1aa0f2a6fc3560.setContent(html_6a4997da3a2f5f727e949fd94fee35c0);
+        
+
+        circle_marker_98cfe7e807459d098f48ac04b65dd455.bindPopup(popup_9ea631d618c275a69b1aa0f2a6fc3560)
+        ;
+
+        
+    
+    
+            var circle_marker_dca26da685474cf5301fb1f3c2ff1afb = L.circleMarker(
+                [20.12759264378157, -98.36664035587188],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_d61cdcf3cc98ab2f9ef98775b1f90468 = L.popup({"maxWidth": 300});
+
+        
+            var html_add9b1d2e99feecdd2ff3f47c1d9c87c = $(`<div id="html_add9b1d2e99feecdd2ff3f47c1d9c87c" style="width: 100.0%; height: 100.0%;"><b>fraccionamiento los pinos</b><br>Precio Promedio: $2,102,950.00 MXN<br>Precio Mediano: $2,102,950.00 MXN<br>Baños Medianos: 2<br>Precio Mediano por m²: $18,896.94 MXN<br>Recámaras Medianas: 2.5<br>Estacionamientos Medianos: 1.5<br>Área Construida Mediana: 160.0 m²<br>Área Total Mediana: 135.0 m²</div>`)[0];
+            popup_d61cdcf3cc98ab2f9ef98775b1f90468.setContent(html_add9b1d2e99feecdd2ff3f47c1d9c87c);
+        
+
+        circle_marker_dca26da685474cf5301fb1f3c2ff1afb.bindPopup(popup_d61cdcf3cc98ab2f9ef98775b1f90468)
+        ;
+
+        
+    
+    
+            var circle_marker_5bc6e02533866cb6765878fe84ea132b = L.circleMarker(
+                [20.07290111723724, -98.33845278422518],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_51382c5234334ef313b8d539e3e14f2b = L.popup({"maxWidth": 300});
+
+        
+            var html_5096e6f3eaa3d9e7a5be014895300d77 = $(`<div id="html_5096e6f3eaa3d9e7a5be014895300d77" style="width: 100.0%; height: 100.0%;"><b>fraccionamiento los sabinos</b><br>Precio Promedio: $790,000.00 MXN<br>Precio Mediano: $790,000.00 MXN<br>Baños Medianos: 2.5<br>Precio Mediano por m²: $6,929.82 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 206.0 m²<br>Área Total Mediana: 114.0 m²</div>`)[0];
+            popup_51382c5234334ef313b8d539e3e14f2b.setContent(html_5096e6f3eaa3d9e7a5be014895300d77);
+        
+
+        circle_marker_5bc6e02533866cb6765878fe84ea132b.bindPopup(popup_51382c5234334ef313b8d539e3e14f2b)
+        ;
+
+        
+    
+    
+            var circle_marker_6e575ee96d59c793731f734c7ab1a9cc = L.circleMarker(
+                [20.0966772, -98.37080449999999],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_2d8734bc1a2b1a7ff9993c9425f0c959 = L.popup({"maxWidth": 300});
+
+        
+            var html_206a0325f32ada6d49c2c1e5132b507c = $(`<div id="html_206a0325f32ada6d49c2c1e5132b507c" style="width: 100.0%; height: 100.0%;"><b>fraccionamiento rinconada la morena</b><br>Precio Promedio: $652,000.00 MXN<br>Precio Mediano: $580,000.00 MXN<br>Baños Medianos: 2.5<br>Precio Mediano por m²: $3,866.67 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 210.0 m²<br>Área Total Mediana: 150.0 m²</div>`)[0];
+            popup_2d8734bc1a2b1a7ff9993c9425f0c959.setContent(html_206a0325f32ada6d49c2c1e5132b507c);
+        
+
+        circle_marker_6e575ee96d59c793731f734c7ab1a9cc.bindPopup(popup_2d8734bc1a2b1a7ff9993c9425f0c959)
+        ;
+
+        
+    
+    
+            var circle_marker_2b84966bf24ea13664436df06a310b57 = L.circleMarker(
+                [20.0632511, -98.3630994],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_f2990079043e6ebfe5ac27a970ef56f2 = L.popup({"maxWidth": 300});
+
+        
+            var html_0507dc6f0a7c373763fa4709fe3e7ff3 = $(`<div id="html_0507dc6f0a7c373763fa4709fe3e7ff3" style="width: 100.0%; height: 100.0%;"><b>fraccionamiento tollancingo</b><br>Precio Promedio: $1,835,154.00 MXN<br>Precio Mediano: $1,835,154.00 MXN<br>Baños Medianos: 2.5<br>Precio Mediano por m²: $19,947.33 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 140.0 m²<br>Área Total Mediana: 92.0 m²</div>`)[0];
+            popup_f2990079043e6ebfe5ac27a970ef56f2.setContent(html_0507dc6f0a7c373763fa4709fe3e7ff3);
+        
+
+        circle_marker_2b84966bf24ea13664436df06a310b57.bindPopup(popup_f2990079043e6ebfe5ac27a970ef56f2)
+        ;
+
+        
+    
+    
+            var circle_marker_dd8c869aefd89e04efb1b6bc505df65d = L.circleMarker(
+                [20.07854422354666, -98.39069513615107],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_5af7f167228023abff6dcc195100dd18 = L.popup({"maxWidth": 300});
+
+        
+            var html_fd805d4be2a8cce03b78ff5afb94ec22 = $(`<div id="html_fd805d4be2a8cce03b78ff5afb94ec22" style="width: 100.0%; height: 100.0%;"><b>fraccionamiento valle verde</b><br>Precio Promedio: $1,533,750.00 MXN<br>Precio Mediano: $1,367,500.00 MXN<br>Baños Medianos: 2<br>Precio Mediano por m²: $13,450.29 MXN<br>Recámaras Medianas: 2.5<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 92.0 m²<br>Área Total Mediana: 93.0 m²</div>`)[0];
+            popup_5af7f167228023abff6dcc195100dd18.setContent(html_fd805d4be2a8cce03b78ff5afb94ec22);
+        
+
+        circle_marker_dd8c869aefd89e04efb1b6bc505df65d.bindPopup(popup_5af7f167228023abff6dcc195100dd18)
+        ;
+
+        
+    
+    
+            var circle_marker_f8f9dd5748eefa6aa3b8e8247f7b1938 = L.circleMarker(
+                [20.08240704657943, -98.35935311994493],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_59288393e326e8aa5ef931df6b1630d9 = L.popup({"maxWidth": 300});
+
+        
+            var html_892f6e709416c79089eae16726cdbaad = $(`<div id="html_892f6e709416c79089eae16726cdbaad" style="width: 100.0%; height: 100.0%;"><b>francisco villa</b><br>Precio Promedio: $3,600,000.00 MXN<br>Precio Mediano: $3,600,000.00 MXN<br>Baños Medianos: 5.0<br>Precio Mediano por m²: $20,571.43 MXN<br>Recámaras Medianas: 7.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 350.0 m²<br>Área Total Mediana: 175.0 m²</div>`)[0];
+            popup_59288393e326e8aa5ef931df6b1630d9.setContent(html_892f6e709416c79089eae16726cdbaad);
+        
+
+        circle_marker_f8f9dd5748eefa6aa3b8e8247f7b1938.bindPopup(popup_59288393e326e8aa5ef931df6b1630d9)
+        ;
+
+        
+    
+    
+            var circle_marker_b43235da6ae87e6c1974b648d720163a = L.circleMarker(
+                [20.08853672619091, -98.34995916253509],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_3d3333b092b0f2ddb8bfa57876b2849a = L.popup({"maxWidth": 300});
+
+        
+            var html_5f0835ce567f474e2c3aebe5df52455f = $(`<div id="html_5f0835ce567f474e2c3aebe5df52455f" style="width: 100.0%; height: 100.0%;"><b>guadalupe</b><br>Precio Promedio: $566,000.00 MXN<br>Precio Mediano: $549,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $2,745.00 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 150.0 m²<br>Área Total Mediana: 200.0 m²</div>`)[0];
+            popup_3d3333b092b0f2ddb8bfa57876b2849a.setContent(html_5f0835ce567f474e2c3aebe5df52455f);
+        
+
+        circle_marker_b43235da6ae87e6c1974b648d720163a.bindPopup(popup_3d3333b092b0f2ddb8bfa57876b2849a)
+        ;
+
+        
+    
+    
+            var circle_marker_94d17c647e09b72c36c293a15b57988d = L.circleMarker(
+                [20.1169408, -98.3718319],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_cf522b77ec969392b569bb4747844a87 = L.popup({"maxWidth": 300});
+
+        
+            var html_73764e30f7467c62d2a47126f6ca37b3 = $(`<div id="html_73764e30f7467c62d2a47126f6ca37b3" style="width: 100.0%; height: 100.0%;"><b>huapalcalco</b><br>Precio Promedio: $568,333.33 MXN<br>Precio Mediano: $570,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $6,333.33 MXN<br>Recámaras Medianas: 2.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 48.0 m²<br>Área Total Mediana: 90.0 m²</div>`)[0];
+            popup_cf522b77ec969392b569bb4747844a87.setContent(html_73764e30f7467c62d2a47126f6ca37b3);
+        
+
+        circle_marker_94d17c647e09b72c36c293a15b57988d.bindPopup(popup_cf522b77ec969392b569bb4747844a87)
+        ;
+
+        
+    
+    
+            var circle_marker_01a4a22ead89438dc70d870fefac9417 = L.circleMarker(
+                [20.09131200539605, -98.36557379904322],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_d5655b890648f0af0c7c897c3b6bd985 = L.popup({"maxWidth": 300});
+
+        
+            var html_f1e502472bcf0c94dabb5b2da15efaf5 = $(`<div id="html_f1e502472bcf0c94dabb5b2da15efaf5" style="width: 100.0%; height: 100.0%;"><b>insurgentes</b><br>Precio Promedio: $2,056,333.33 MXN<br>Precio Mediano: $1,020,000.00 MXN<br>Baños Medianos: 2.5<br>Precio Mediano por m²: $8,446.15 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 112.0 m²<br>Área Total Mediana: 90.0 m²</div>`)[0];
+            popup_d5655b890648f0af0c7c897c3b6bd985.setContent(html_f1e502472bcf0c94dabb5b2da15efaf5);
+        
+
+        circle_marker_01a4a22ead89438dc70d870fefac9417.bindPopup(popup_d5655b890648f0af0c7c897c3b6bd985)
+        ;
+
+        
+    
+    
+            var circle_marker_98125d64da89b910332f3778efc19f00 = L.circleMarker(
+                [20.07202771986532, -98.34025879614148],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_b06962f085be94d6a4bf275a4f3e52a0 = L.popup({"maxWidth": 300});
+
+        
+            var html_500fe959c8a01c5d499002d1c23a2d62 = $(`<div id="html_500fe959c8a01c5d499002d1c23a2d62" style="width: 100.0%; height: 100.0%;"><b>jaltepec</b><br>Precio Promedio: $946,450.00 MXN<br>Precio Mediano: $832,000.00 MXN<br>Baños Medianos: .0<br>Precio Mediano por m²: $5,706.88 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 82.5 m²<br>Área Total Mediana: 121.5 m²</div>`)[0];
+            popup_b06962f085be94d6a4bf275a4f3e52a0.setContent(html_500fe959c8a01c5d499002d1c23a2d62);
+        
+
+        circle_marker_98125d64da89b910332f3778efc19f00.bindPopup(popup_b06962f085be94d6a4bf275a4f3e52a0)
+        ;
+
+        
+    
+    
+            var circle_marker_3df24b41eb5a1a2d79a1da2ce2c29749 = L.circleMarker(
+                [20.11467772393499, -98.36781697841653],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_443b3a5e54ea9e415533771be3091ba9 = L.popup({"maxWidth": 300});
+
+        
+            var html_b834ecc49e1dcf7b6a890f2f4b07d31b = $(`<div id="html_b834ecc49e1dcf7b6a890f2f4b07d31b" style="width: 100.0%; height: 100.0%;"><b>la argentina</b><br>Precio Promedio: $950,000.00 MXN<br>Precio Mediano: $950,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $8,119.66 MXN<br>Recámaras Medianas: 2.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 68.0 m²<br>Área Total Mediana: 117.0 m²</div>`)[0];
+            popup_443b3a5e54ea9e415533771be3091ba9.setContent(html_b834ecc49e1dcf7b6a890f2f4b07d31b);
+        
+
+        circle_marker_3df24b41eb5a1a2d79a1da2ce2c29749.bindPopup(popup_443b3a5e54ea9e415533771be3091ba9)
+        ;
+
+        
+    
+    
+            var circle_marker_f771b687d16cb5fd9cf545ab8d678cb2 = L.circleMarker(
+                [20.0814043064842, -98.37908760063347],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_8343dc3f938d8774132b0756e57468db = L.popup({"maxWidth": 300});
+
+        
+            var html_2299263fd0afb988f79a0cd856423de4 = $(`<div id="html_2299263fd0afb988f79a0cd856423de4" style="width: 100.0%; height: 100.0%;"><b>la escondida</b><br>Precio Promedio: $3,000,000.00 MXN<br>Precio Mediano: $3,000,000.00 MXN<br>Baños Medianos: 3.0<br>Precio Mediano por m²: $15,000.00 MXN<br>Recámaras Medianas: 2.5<br>Estacionamientos Medianos: 1.5<br>Área Construida Mediana: 170.0 m²<br>Área Total Mediana: 200.0 m²</div>`)[0];
+            popup_8343dc3f938d8774132b0756e57468db.setContent(html_2299263fd0afb988f79a0cd856423de4);
+        
+
+        circle_marker_f771b687d16cb5fd9cf545ab8d678cb2.bindPopup(popup_8343dc3f938d8774132b0756e57468db)
+        ;
+
+        
+    
+    
+            var circle_marker_21e41b370c1fcdd5d8ea02b37deaf8c3 = L.circleMarker(
+                [20.0781121777683, -98.36316928846918],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_299572071c6140381af24ea46e0996cf = L.popup({"maxWidth": 300});
+
+        
+            var html_1ed526f4ff1f3efa31d85279868ae78b = $(`<div id="html_1ed526f4ff1f3efa31d85279868ae78b" style="width: 100.0%; height: 100.0%;"><b>lindavista</b><br>Precio Promedio: $1,290,000.00 MXN<br>Precio Mediano: $1,290,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $6,450.00 MXN<br>Recámaras Medianas: 4.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 250.0 m²<br>Área Total Mediana: 200.0 m²</div>`)[0];
+            popup_299572071c6140381af24ea46e0996cf.setContent(html_1ed526f4ff1f3efa31d85279868ae78b);
+        
+
+        circle_marker_21e41b370c1fcdd5d8ea02b37deaf8c3.bindPopup(popup_299572071c6140381af24ea46e0996cf)
+        ;
+
+        
+    
+    
+            var circle_marker_295b9adeb9046273cf124223d2f063c2 = L.circleMarker(
+                [20.10804755607559, -98.35458896478072],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_d5488bee696af63370dbbd6acbfd9b55 = L.popup({"maxWidth": 300});
+
+        
+            var html_32acc96b2d8272d5d42343f6e89f85da = $(`<div id="html_32acc96b2d8272d5d42343f6e89f85da" style="width: 100.0%; height: 100.0%;"><b>lomas de progreso</b><br>Precio Promedio: $1,054,350.00 MXN<br>Precio Mediano: $1,148,100.00 MXN<br>Baños Medianos: 2.0<br>Precio Mediano por m²: $8,139.66 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 185.0 m²<br>Área Total Mediana: 124.5 m²</div>`)[0];
+            popup_d5488bee696af63370dbbd6acbfd9b55.setContent(html_32acc96b2d8272d5d42343f6e89f85da);
+        
+
+        circle_marker_295b9adeb9046273cf124223d2f063c2.bindPopup(popup_d5488bee696af63370dbbd6acbfd9b55)
+        ;
+
+        
+    
+    
+            var circle_marker_f3e3a5ac01957d233436aec3c47bb963 = L.circleMarker(
+                [20.07659644164228, -98.40009449973756],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_d7e45a4f43a1f3b4af08e34aaa4761b6 = L.popup({"maxWidth": 300});
+
+        
+            var html_59d37b0d627568d0eddf7c37268c1706 = $(`<div id="html_59d37b0d627568d0eddf7c37268c1706" style="width: 100.0%; height: 100.0%;"><b>magisterio ii</b><br>Precio Promedio: $995,000.00 MXN<br>Precio Mediano: $995,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $8,883.93 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 77.0 m²<br>Área Total Mediana: 112.0 m²</div>`)[0];
+            popup_d7e45a4f43a1f3b4af08e34aaa4761b6.setContent(html_59d37b0d627568d0eddf7c37268c1706);
+        
+
+        circle_marker_f3e3a5ac01957d233436aec3c47bb963.bindPopup(popup_d7e45a4f43a1f3b4af08e34aaa4761b6)
+        ;
+
+        
+    
+    
+            var circle_marker_17728ec7e4db5eb702ee2a5500cbd2e0 = L.circleMarker(
+                [20.0589475, -98.3642979],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_37dc264bba29f5fefae489fca66f9e25 = L.popup({"maxWidth": 300});
+
+        
+            var html_da6c470a92df12f0961c8d39211080ea = $(`<div id="html_da6c470a92df12f0961c8d39211080ea" style="width: 100.0%; height: 100.0%;"><b>medias tierras</b><br>Precio Promedio: $1,537,825.00 MXN<br>Precio Mediano: $1,722,500.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $14,875.00 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 190.5 m²<br>Área Total Mediana: 108.5 m²</div>`)[0];
+            popup_37dc264bba29f5fefae489fca66f9e25.setContent(html_da6c470a92df12f0961c8d39211080ea);
+        
+
+        circle_marker_17728ec7e4db5eb702ee2a5500cbd2e0.bindPopup(popup_37dc264bba29f5fefae489fca66f9e25)
+        ;
+
+        
+    
+    
+            var circle_marker_1f2092c3e117aaf798540832c82c4d32 = L.circleMarker(
+                [20.14673165, -98.33510254999999],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_bfe80c2972199d32a514676fffeffb56 = L.popup({"maxWidth": 300});
+
+        
+            var html_f2c67a85223e32d7f96c41c2cca3a336 = $(`<div id="html_f2c67a85223e32d7f96c41c2cca3a336" style="width: 100.0%; height: 100.0%;"><b>napateco</b><br>Precio Promedio: $749,166.67 MXN<br>Precio Mediano: $650,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $6,555.56 MXN<br>Recámaras Medianas: 2.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 71.5 m²<br>Área Total Mediana: 98.0 m²</div>`)[0];
+            popup_bfe80c2972199d32a514676fffeffb56.setContent(html_f2c67a85223e32d7f96c41c2cca3a336);
+        
+
+        circle_marker_1f2092c3e117aaf798540832c82c4d32.bindPopup(popup_bfe80c2972199d32a514676fffeffb56)
+        ;
+
+        
+    
+    
+            var circle_marker_bcea075ace37c554f5cf8ca971723f30 = L.circleMarker(
+                [20.1008579, -98.3605312],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_5147ab868393708da14bbac6aade9b68 = L.popup({"maxWidth": 300});
+
+        
+            var html_4035fdb58903beb98f7f51851622b87a = $(`<div id="html_4035fdb58903beb98f7f51851622b87a" style="width: 100.0%; height: 100.0%;"><b>nuevo tulancingo</b><br>Precio Promedio: $709,500.00 MXN<br>Precio Mediano: $709,500.00 MXN<br>Baños Medianos: 0.5<br>Precio Mediano por m²: $8,523.81 MXN<br>Recámaras Medianas: 1.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 130.0 m²<br>Área Total Mediana: 89.5 m²</div>`)[0];
+            popup_5147ab868393708da14bbac6aade9b68.setContent(html_4035fdb58903beb98f7f51851622b87a);
+        
+
+        circle_marker_bcea075ace37c554f5cf8ca971723f30.bindPopup(popup_5147ab868393708da14bbac6aade9b68)
+        ;
+
+        
+    
+    
+            var circle_marker_6a776eed11ba6b047d8765351d7a431d = L.circleMarker(
+                [20.0674004, -98.404031],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_bf20ee01bf2b6cc1b11ff0f281fd1877 = L.popup({"maxWidth": 300});
+
+        
+            var html_e41c56a526649b0fa79fc07ce81c7d34 = $(`<div id="html_e41c56a526649b0fa79fc07ce81c7d34" style="width: 100.0%; height: 100.0%;"><b>pedregal de san francisco tulancingo</b><br>Precio Promedio: $2,750,000.00 MXN<br>Precio Mediano: $2,750,000.00 MXN<br>Baños Medianos: 2<br>Precio Mediano por m²: $18,333.33 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 182.5 m²<br>Área Total Mediana: 150.0 m²</div>`)[0];
+            popup_bf20ee01bf2b6cc1b11ff0f281fd1877.setContent(html_e41c56a526649b0fa79fc07ce81c7d34);
+        
+
+        circle_marker_6a776eed11ba6b047d8765351d7a431d.bindPopup(popup_bf20ee01bf2b6cc1b11ff0f281fd1877)
+        ;
+
+        
+    
+    
+            var circle_marker_c2dc1e8bfc33486757ecd8ace2436901 = L.circleMarker(
+                [20.1207085, -98.4012901],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_169624bcbb00199c376f31d4db4a6a19 = L.popup({"maxWidth": 300});
+
+        
+            var html_530a86dcaa0f5795ebbf7583dc0e6f58 = $(`<div id="html_530a86dcaa0f5795ebbf7583dc0e6f58" style="width: 100.0%; height: 100.0%;"><b>rincones de la hacienda</b><br>Precio Promedio: $680,000.00 MXN<br>Precio Mediano: $680,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $7,555.56 MXN<br>Recámaras Medianas: 2.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 45.0 m²<br>Área Total Mediana: 90.0 m²</div>`)[0];
+            popup_169624bcbb00199c376f31d4db4a6a19.setContent(html_530a86dcaa0f5795ebbf7583dc0e6f58);
+        
+
+        circle_marker_c2dc1e8bfc33486757ecd8ace2436901.bindPopup(popup_169624bcbb00199c376f31d4db4a6a19)
+        ;
+
+        
+    
+    
+            var circle_marker_01da6925b52afd56f8f32806312233ce = L.circleMarker(
+                [20.07134442917374, -98.38428484042973],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_f7a05b5f60c73aba90b3f0848345bccf = L.popup({"maxWidth": 300});
+
+        
+            var html_1a30e7617f946067c9d77c20b89cf508 = $(`<div id="html_1a30e7617f946067c9d77c20b89cf508" style="width: 100.0%; height: 100.0%;"><b>san francisco</b><br>Precio Promedio: $3,130,000.00 MXN<br>Precio Mediano: $3,130,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $15,650.00 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 241.0 m²<br>Área Total Mediana: 200.0 m²</div>`)[0];
+            popup_f7a05b5f60c73aba90b3f0848345bccf.setContent(html_1a30e7617f946067c9d77c20b89cf508);
+        
+
+        circle_marker_01da6925b52afd56f8f32806312233ce.bindPopup(popup_f7a05b5f60c73aba90b3f0848345bccf)
+        ;
+
+        
+    
+    
+            var circle_marker_da36d138ed89fc6d1fb0536e9f29ed6b = L.circleMarker(
+                [20.06688039581432, -98.34245656915797],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_6e50a593bb5c93651b80c94ba6c4ba8b = L.popup({"maxWidth": 300});
+
+        
+            var html_7e84059f073daa3a361f371d909bfa51 = $(`<div id="html_7e84059f073daa3a361f371d909bfa51" style="width: 100.0%; height: 100.0%;"><b>san juan</b><br>Precio Promedio: $3,200,000.00 MXN<br>Precio Mediano: $3,200,000.00 MXN<br>Baños Medianos: 2.5<br>Precio Mediano por m²: $16,000.00 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 2.0<br>Área Construida Mediana: 600.0 m²<br>Área Total Mediana: 200.0 m²</div>`)[0];
+            popup_6e50a593bb5c93651b80c94ba6c4ba8b.setContent(html_7e84059f073daa3a361f371d909bfa51);
+        
+
+        circle_marker_da36d138ed89fc6d1fb0536e9f29ed6b.bindPopup(popup_6e50a593bb5c93651b80c94ba6c4ba8b)
+        ;
+
+        
+    
+    
+            var circle_marker_96c8f3b340fe06ad4fd47b4d43cf98d5 = L.circleMarker(
+                [20.097603, -98.3922564],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_d241ccf99ceb7dc8f3badd48839ddaf2 = L.popup({"maxWidth": 300});
+
+        
+            var html_cd09e52078bdec9f727586bb10f0a50d = $(`<div id="html_cd09e52078bdec9f727586bb10f0a50d" style="width: 100.0%; height: 100.0%;"><b>san nicolas el chico</b><br>Precio Promedio: $1,250,000.00 MXN<br>Precio Mediano: $1,250,000.00 MXN<br>Baños Medianos: 2.0<br>Precio Mediano por m²: $12,500.00 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 125.0 m²<br>Área Total Mediana: 100.0 m²</div>`)[0];
+            popup_d241ccf99ceb7dc8f3badd48839ddaf2.setContent(html_cd09e52078bdec9f727586bb10f0a50d);
+        
+
+        circle_marker_96c8f3b340fe06ad4fd47b4d43cf98d5.bindPopup(popup_d241ccf99ceb7dc8f3badd48839ddaf2)
+        ;
+
+        
+    
+    
+            var circle_marker_f740f512b5fec1578c92581b0b3efd6a = L.circleMarker(
+                [20.0843785, -98.36926339999998],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_efddf039b0c1c6927006f48464510f97 = L.popup({"maxWidth": 300});
+
+        
+            var html_8f9eb094bac050a618dbba90f21d12eb = $(`<div id="html_8f9eb094bac050a618dbba90f21d12eb" style="width: 100.0%; height: 100.0%;"><b>tulancingo de bravo centro</b><br>Precio Promedio: $4,344,833.33 MXN<br>Precio Mediano: $1,247,000.00 MXN<br>Baños Medianos: 2.0<br>Precio Mediano por m²: $10,023.81 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 103.5 m²<br>Área Total Mediana: 105.0 m²</div>`)[0];
+            popup_efddf039b0c1c6927006f48464510f97.setContent(html_8f9eb094bac050a618dbba90f21d12eb);
+        
+
+        circle_marker_f740f512b5fec1578c92581b0b3efd6a.bindPopup(popup_efddf039b0c1c6927006f48464510f97)
+        ;
+
+        
+    
+    
+            var circle_marker_a64a87a70d39aec32b1f60ac545b2d9d = L.circleMarker(
+                [20.09433831513726, -98.36886645185243],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_c0249d1184b5edd3bf41f350ac0fc6aa = L.popup({"maxWidth": 300});
+
+        
+            var html_57c70dfb2133816d90957eecb8c34d50 = $(`<div id="html_57c70dfb2133816d90957eecb8c34d50" style="width: 100.0%; height: 100.0%;"><b>unidad habitacional la morena</b><br>Precio Promedio: $1,080,638.70 MXN<br>Precio Mediano: $628,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $3,720.24 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 240.0 m²<br>Área Total Mediana: 168.0 m²</div>`)[0];
+            popup_c0249d1184b5edd3bf41f350ac0fc6aa.setContent(html_57c70dfb2133816d90957eecb8c34d50);
+        
+
+        circle_marker_a64a87a70d39aec32b1f60ac545b2d9d.bindPopup(popup_c0249d1184b5edd3bf41f350ac0fc6aa)
+        ;
+
+        
+    
+    
+            var circle_marker_69ace2551497ef9c3be5d17fb5a93320 = L.circleMarker(
+                [20.113550153909145, -98.35078491288823],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_f451beca2132da04480ede53f9ac02a0 = L.popup({"maxWidth": 300});
+
+        
+            var html_330bcc231d84ced401a84b3b421a4494 = $(`<div id="html_330bcc231d84ced401a84b3b421a4494" style="width: 100.0%; height: 100.0%;"><b>vicente guerrero 1ra seccion</b><br>Precio Promedio: $1,056,787.87 MXN<br>Precio Mediano: $903,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $5,919.45 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 176.0 m²<br>Área Total Mediana: 115.0 m²</div>`)[0];
+            popup_f451beca2132da04480ede53f9ac02a0.setContent(html_330bcc231d84ced401a84b3b421a4494);
+        
+
+        circle_marker_69ace2551497ef9c3be5d17fb5a93320.bindPopup(popup_f451beca2132da04480ede53f9ac02a0)
+        ;
+
+        
+    
+    
+            var circle_marker_ddc142b66da39f3c99f26ac877ae6a9e = L.circleMarker(
+                [20.080955295075, -98.39232312523974],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_b8e7b2170993c3eebaac6e3f8e34e575 = L.popup({"maxWidth": 300});
+
+        
+            var html_e0aac606d03069bade2d68a4b8fab84c = $(`<div id="html_e0aac606d03069bade2d68a4b8fab84c" style="width: 100.0%; height: 100.0%;"><b>villa sol</b><br>Precio Promedio: $927,250.00 MXN<br>Precio Mediano: $913,500.00 MXN<br>Baños Medianos: 1.5<br>Precio Mediano por m²: $12,687.50 MXN<br>Recámaras Medianas: 2.5<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 64.0 m²<br>Área Total Mediana: 72.0 m²</div>`)[0];
+            popup_b8e7b2170993c3eebaac6e3f8e34e575.setContent(html_e0aac606d03069bade2d68a4b8fab84c);
+        
+
+        circle_marker_ddc142b66da39f3c99f26ac877ae6a9e.bindPopup(popup_b8e7b2170993c3eebaac6e3f8e34e575)
+        ;
+
+        
+    
+    
+            var circle_marker_7b3a136064825e92985de4cea0374002 = L.circleMarker(
+                [20.06843593550518, -98.38669041534423],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_d4248f3324a69fa6ab29d7f6a1856c7d = L.popup({"maxWidth": 300});
+
+        
+            var html_5e9077fc578a0feeb61f204e16e50c2c = $(`<div id="html_5e9077fc578a0feeb61f204e16e50c2c" style="width: 100.0%; height: 100.0%;"><b>villas de san francisco</b><br>Precio Promedio: $809,000.00 MXN<br>Precio Mediano: $809,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $5,056.25 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 160.0 m²<br>Área Total Mediana: 160.0 m²</div>`)[0];
+            popup_d4248f3324a69fa6ab29d7f6a1856c7d.setContent(html_5e9077fc578a0feeb61f204e16e50c2c);
+        
+
+        circle_marker_7b3a136064825e92985de4cea0374002.bindPopup(popup_d4248f3324a69fa6ab29d7f6a1856c7d)
+        ;
+
+        
+    
+    
+            var circle_marker_881c7f2f626fcd38b69da3cc2806bf30 = L.circleMarker(
+                [20.0711093, -98.38039409999999],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_7538e21c14c40a45ffe2b3318b6bd4d7);
+        
+    
+        var popup_8b37fb7f2b0be4034b2bff618b48f9a1 = L.popup({"maxWidth": 300});
+
+        
+            var html_be0ad6af746d000d687b1c4ddc41c0c9 = $(`<div id="html_be0ad6af746d000d687b1c4ddc41c0c9" style="width: 100.0%; height: 100.0%;"><b>villas de tulancingo</b><br>Precio Promedio: $4,500,000.00 MXN<br>Precio Mediano: $4,500,000.00 MXN<br>Baños Medianos: 1.0<br>Precio Mediano por m²: $25,139.66 MXN<br>Recámaras Medianas: 3.0<br>Estacionamientos Medianos: 1.0<br>Área Construida Mediana: 266.0 m²<br>Área Total Mediana: 179.0 m²</div>`)[0];
+            popup_8b37fb7f2b0be4034b2bff618b48f9a1.setContent(html_be0ad6af746d000d687b1c4ddc41c0c9);
+        
+
+        circle_marker_881c7f2f626fcd38b69da3cc2806bf30.bindPopup(popup_8b37fb7f2b0be4034b2bff618b48f9a1)
+        ;
+
+        
+    
+</script>
+</html>

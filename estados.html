@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Calor México</title>
+  <!-- Incluye la biblioteca Leaflet y el plugin Heatmap.js -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+</head>
+<body>
+
+<!-- Mapa -->
+<div id="map" style="height: 500px;"></div>
+
+<script>
+  // Coordenadas de los lugares que mencionaste
+  var coordenadas = [
+    { lat: 20.535537, lon: -99.879927 },  // Hidalgo
+    { lat: 19.041439, lon: -98.206272 },  // Puebla
+    { lat: 19.173773, lon: -96.134224 },  // Veracruz
+    { lat: 20.588060, lon: -100.389888 }, // Querétaro
+    { lat: 20.659538, lon: -103.349438 }  // Jalisco
+  ];
+
+  // Crea el mapa
+  var map = L.map('map').setView([23.6345, -102.5528], 5); // Punto central de México
+
+  // Agrega la capa de OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Crea un array de puntos de calor
+  var heatArray = [];
+  coordenadas.forEach(function(coordenada) {
+    heatArray.push([coordenada.lat, coordenada.lon]);
+  });
+
+  // Crea la capa de calor
+  var heat = L.heatLayer(heatArray, { radius: 25 }).addTo(map);
+
+</script>
+
+</body>
+</html>

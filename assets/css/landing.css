@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #ffffff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    max-width: 100px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #1B215C;
+    font-weight: bold;
+}
+
+header nav a {
+    /* Estilos comunes para todos los enlaces dentro del nav en el header */
+    color: #1B215C;
+    padding: 8px 20px;
+    text-decoration: none;
+}
+
+header nav a.btnLogin {
+    width: 87px;
+    height: 25px; /* Ajusta la altura según tu preferencia */
+    margin-left: auto;
+    border-radius: 30px;
+    gap: 8px;
+    background-color: #1B215C;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 25px; /* Ajusta la altura de línea para centrar verticalmente */
+}
+
+#contenido {
+    padding: 20px;
+    margin: 20px;
+    background-color: #fff;
+    text-align: left;
+    height: 400px; /* Altura muy alta según tu requerimiento */
+}
+
+#data-alpine {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#data-alpine .contenido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#data-alpine img {
+    max-width: 100%;
+    height: auto;
+}
+
+#mas-informacion-btn {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#container {
+    background-color: #3D45C0;
+    color: white;
+    padding: 20px;
+    text-align: center;
+} 
+
+.m {
+    color: #1B215C;
+}
+
+.contenidoPrincipal {
+    background-color: #6774DF;
+    text-align: center;
+    color: #fff;
+    height: 500px;
+    
+}
+
+.btnEmpiezaAhora {
+    width: 174px;
+height: 50px;
+top: 388px;
+left: 633px;
+color: #28D3AB;
+
+    
+}
+
